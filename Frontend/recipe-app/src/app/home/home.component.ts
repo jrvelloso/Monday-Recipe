@@ -8,7 +8,7 @@ import { CategoryService } from './../../services/category.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private categoryService: CategoryService) { }
+  constructor() { }
 
   ngOnInit() {
 
