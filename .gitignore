@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Frontend/recipe-app/.vscode/extensions.json
+/Frontend/recipe-app/.vscode/launch.json
+/Frontend/recipe-app/.vscode/tasks.json
+/Frontend/recipe-app/.vscode/extensions.json
+/Frontend/recipe-app/.vscode/launch.json
+/Frontend/recipe-app/.vscode/tasks.json
