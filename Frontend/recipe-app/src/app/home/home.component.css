@@ -1,0 +1,11 @@
+.imageFood {
+  width: 10%;
+  height: 10%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.imageFood:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
