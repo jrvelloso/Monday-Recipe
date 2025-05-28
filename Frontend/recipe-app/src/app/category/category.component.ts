@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/interfaces/icategory';
 import { CategoryService } from 'src/services/category.service';
@@ -7,8 +6,6 @@ import { CategoryService } from 'src/services/category.service';
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css'],
-  standalone: true,
-  imports: [CommonModule],
 })
 export class CategoryComponent implements OnInit {
 
