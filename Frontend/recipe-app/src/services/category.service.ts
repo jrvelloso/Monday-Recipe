@@ -5,8 +5,8 @@ import { ICategory } from 'src/interfaces/icategory';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  // private apiUrl = 'https://localhost:7048/api/Category';
-  private apiUrl = 'https://api.recipeapp.com/categories'; // Example URL, replace with your actual API endpoint
+  private apiUrl = 'https://localhost:7048/api/Category';
+  // private apiUrl = 'https://api.recipeapp.com/categories'; // Example URL, replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
