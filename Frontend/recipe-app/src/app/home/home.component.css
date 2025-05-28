@@ -9,3 +9,153 @@
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header {
+  background: #4e514e;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  margin: 0;
+}
+.nav-buttons {
+  display: flex;
+}
+.nav-buttons button {
+  margin-left: 10px;
+  padding: 8px 12px; /* Reduzido para botões menores */
+  background: white;
+  color: #4e514e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.nav-buttons button:hover {
+  background: #e0e0e0;
+}
+.container {
+  padding: 17%;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  margin-block: 10px;
+  text-align: center;
+  flex: 1; /* Faz a área do conteúdo ocupar o espaço restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+}
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center; /* Centraliza a barra de pesquisa */
+}
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px; /* Espaço entre o input e o botão */
+}
+.search-bar button {
+  padding: 10px;
+  background: #4e514e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.search-bar button:hover {
+  background: #4e514e;
+}
+.recipe-list {
+  margin-top: 20px;
+  display: flex; /* Exibe as receitas em linha */
+  flex-wrap: wrap; /* Permite que as receitas se movam para a linha seguinte se não houver espaço */
+  justify-content: center; /* Centraliza as receitas */
+}
+.recipe-item {
+  background: white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 200px; /* Largura dos itens da receita */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center; /* Centraliza o texto dentro do item da receita */
+}
+.recipe-item:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+footer {
+  background: #4e514e;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.form-container {
+  display: none;
+  margin: 20px auto;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px; /* Largura do formulário */
+  padding-left: 20px; /* Espaço à esquerda */
+  padding-right: 20px; /* Espaço à direita */
+}
+.form-container input {
+  width: calc(100% - 20px); /* Ajustado para o padding */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-container button {
+  padding: 8px; /* Reduzido para botões menores */
+  background: #4e514e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%; /* Botão ocupa 30% da largura */
+  margin: 5px; /* Margem entre os botões */
+}
+.form-container button:hover {
+  background: #4e514e;
+}
+.back-button {
+  margin-top: 10px; /* Ajustado para margem superior */
+  padding: 8px; /* Reduzido para botões menores */
+  background: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%; /* Botão ocupa 30% da largura */
+}
+.back-button:hover {
+  background: #c9302c;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Espaço entre os botões */
+  margin-top: 10px; /* Margem superior para o container de botões */
+}

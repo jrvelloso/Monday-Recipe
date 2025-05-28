@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
 
   }
 
+  
+
 recipes = [
     {
       title: 'Spaghetti Carbonara',
