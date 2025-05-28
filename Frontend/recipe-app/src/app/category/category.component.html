@@ -1,5 +1,50 @@
-<ul>
-  <li *ngFor="let category of categories">
-    {{ category.name }}
-  </li>
-</ul>
+<div class="container">
+  <h1>Categories</h1>
+&nbsp;
+&nbsp;
+
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        required
+        placeholder="Enter category name"
+      />
+    </div>
+&nbsp;
+&nbsp;
+
+    <div class="form-group checkbox-group">
+      <label for="isActive">Active:</label>
+      <input
+        type="checkbox"
+        id="isActive"
+        formControlName="isActive"
+      />
+    </div>
+&nbsp;
+&nbsp;
+
+    <div class="form-buttons">
+      <button type="submit" [disabled]="categoryForm.invalid">
+        {{ selectedCategory?.id ? 'Update' : 'Create' }}
+      </button>
+      <button type="button" (click)="clearForm()">Cancel</button>
+    </div>
+  </form>
+&nbsp;
+&nbsp;
+
+  <ul class="category-list">
+    <li *ngFor="let category of categories" [class.selected]="category === selectedCategory">
+      <span>{{ category.name }}</span>
+      <div class="right-button">
+      <button (click)="selectCategory(category)">Edit</button>
+      <button (click)="deleteCategory(category.id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/interfaces/icategory';
 import { CategoryService } from 'src/services/category.service';
@@ -9,13 +10,73 @@ import { CategoryService } from 'src/services/category.service';
 })
 export class CategoryComponent implements OnInit {
 
+  categoryForm!: FormGroup;
+ // categories: any[] = []; // Define your categories array
+  selectedCategory: any;
   categories!: ICategory[];
-  constructor(private categoryService: CategoryService) { }
+
+
+  constructor(private categoryService: CategoryService, private fb: FormBuilder) {
+    this.categoryForm = this.fb.group({
+      name: ['', Validators.required],
+      isActive: [false]
+    });
+   }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(data => {
+      this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
       console.log(data);
     });
   }
+
+  fetchCategories(): void {
+    this.categoryService.getCategories().subscribe(data => {
+      return this.categories = data;
+    });
+  }
+
+  selectCategory(category: ICategory): void {
+    this.selectedCategory = { ...category };
+  }
+
+  createCategory(category: ICategory): void {
+    this.categoryService.createCategory(category).subscribe(() => {
+      this.fetchCategories();
+      this.clearForm();
+    });
+  }
+
+
+  updateCategory(): void {
+    if (this.selectedCategory) {
+      this.categoryService.updateCategory(this.selectedCategory.id, this.selectedCategory).subscribe(() => {
+        this.fetchCategories();
+        this.clearForm();
+      });
+    }
+  }
+
+
+  deleteCategory(id: number): void {
+    this.categoryService.deleteCategory(id).subscribe(() => {
+      this.fetchCategories();
+    });
+  }
+
+  onSubmit() {
+    if (this.categoryForm.valid) {
+      if (this.selectedCategory) {
+        this.updateCategory();
+      } else {
+        this.createCategory(this.selectedCategory);
+      }
+    }
+  }
+
+  clearForm() {
+    this.categoryForm.reset();
+    this.selectedCategory = null;
+  }
+
 }
