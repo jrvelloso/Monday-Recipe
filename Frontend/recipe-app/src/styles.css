@@ -4,9 +4,13 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f7f9fc;
+  background-image: url('assets/images/tikka.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
 }
 
 .container {
