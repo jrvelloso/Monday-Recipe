@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ICategory } from 'src/interfaces/icategory';
 import { CategoryService } from 'src/services/category.service';
+import { ICategory } from 'src/interfaces/iingredients';
 
 @Component({
   selector: 'app-category',
@@ -38,6 +38,10 @@ export class CategoryComponent implements OnInit {
 
   selectCategory(category: ICategory): void {
     this.selectedCategory = { ...category };
+    this.categoryForm.patchValue({
+      name: category.name,
+      isActive: category.isActive
+    });
   }
 
   createCategory(category: ICategory): void {
@@ -67,9 +71,12 @@ export class CategoryComponent implements OnInit {
   onSubmit() {
     if (this.categoryForm.valid) {
       if (this.selectedCategory) {
+        // Update selectedCategory with form values
+        this.selectedCategory.name = this.categoryForm.value.name;
+        this.selectedCategory.isActive = this.categoryForm.value.isActive;
         this.updateCategory();
       } else {
-        this.createCategory(this.selectedCategory);
+        this.createCategory(this.categoryForm.value);
       }
     }
   }

@@ -5,20 +5,20 @@
 
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="name">Name:</label>
+      <label for="name">Nome:</label>
       <input
         type="text"
         id="name"
         formControlName="name"
         required
-        placeholder="Enter category name"
+        placeholder="insira a categoria"
       />
     </div>
 &nbsp;
 &nbsp;
 
     <div class="form-group checkbox-group">
-      <label for="isActive">Active:</label>
+      <label for="isActive">Ativo:</label>
       <input
         type="checkbox"
         id="isActive"
@@ -30,9 +30,9 @@
 
     <div class="form-buttons">
       <button type="submit" [disabled]="categoryForm.invalid">
-        {{ selectedCategory?.id ? 'Update' : 'Create' }}
+        {{ selectedCategory?.id ? 'Atualizar' : 'Criar' }}
       </button>
-      <button type="button" (click)="clearForm()">Cancel</button>
+      <button type="button" (click)="clearForm()">Cancelar</button>
     </div>
   </form>
 &nbsp;
@@ -42,8 +42,8 @@
     <li *ngFor="let category of categories" [class.selected]="category === selectedCategory">
       <span>{{ category.name }}</span>
       <div class="right-button">
-      <button (click)="selectCategory(category)">Edit</button>
-      <button (click)="deleteCategory(category.id)">Delete</button>
+      <button (click)="selectCategory(category)">Editar</button>
+      <button (click)="deleteCategory(category.id)">Deletar</button>
       </div>
     </li>
   </ul>
