@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
+import { DifficultyComponent } from './difficulty/difficulty.component';
+import { MeasurementTypeComponent } from './measurement-type/measurement-type.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     IngredientsComponent,
-    CategoryComponent
+    CategoryComponent,
+    DifficultyComponent,
+    MeasurementTypeComponent
   ],
   imports: [
     BrowserModule,

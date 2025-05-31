@@ -25,16 +25,14 @@ export class IngredientsComponent implements OnInit {
       });
      }
 
-    ngOnInit(): void {
-        this.Service.getAll().subscribe(data => {
-        this.ingredients = data;
-        console.log(data);
-      });
-    }
+     ngOnInit(): void {
+      this.fetch();
+    };
 
     fetch(): void {
-      this.Service.getAll().subscribe(data => {
-        return this.ingredients = data;
+      this.Service.getAll().subscribe((data: IIngredients[]) => {
+            this.ingredients = data;
+        console.log(data);
       });
     }
 

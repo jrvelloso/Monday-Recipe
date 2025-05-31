@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Tipo de Medida</h1>
+&nbsp;
+&nbsp;
+
+  <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        required
+        placeholder="insira o tipo de medida"
+      />
+    </div>
+&nbsp;
+&nbsp;
+
+    <div class="form-group checkbox-group">
+      <label for="isActive">Ativo:</label>
+      <input
+        type="checkbox"
+        id="isActive"
+        formControlName="isActive"
+      />
+    </div>
+&nbsp;
+&nbsp;
+
+    <div class="form-buttons">
+      <button type="submit" [disabled]="Form.invalid">
+        {{ selected?.id ? 'Atualizar' : 'Criar' }}
+      </button>
+      <button type="button" (click)="clearForm()">Cancelar</button>
+    </div>
+  </form>
+&nbsp;
+&nbsp;
+
+  <ul class="item-list">
+    <li *ngFor="let item of measurementTypes" [class.selected]="item === selected">
+      <span>{{ item.name }}</span>
+      <div class="right-button">
+      <button (click)="select(item)">Editar</button>
+      <button (click)="delete(item.id)">Deletar</button>
+      </div>
+    </li>
+  </ul>
+</div>
