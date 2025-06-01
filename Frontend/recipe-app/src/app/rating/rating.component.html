@@ -1,5 +1,5 @@
 <div class="rating-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form  (ngSubmit)="onSubmit()">
     <label for="ratingValue">Rating Value:</label>
     <input id="ratingValue" type="number" formControlName="ratingValue" min="0" max="5" />
 

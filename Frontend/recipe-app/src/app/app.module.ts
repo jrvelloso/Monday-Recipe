@@ -13,10 +13,10 @@ import { DifficultyComponent } from './difficulty/difficulty.component';
 import { MeasurementTypeComponent } from './measurement-type/measurement-type.component';
 import { CommentComponent } from './comment/comment.component';
 import { FavoriteComponent } from './favorite/favorite.component';
-import { RatingComponent } from './rating/rating.component';
 import { RecipeCategoryComponent } from './recipecategory/recipecategory.component';
 import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
