@@ -7,7 +7,7 @@ import { IRecipeCategory } from 'src/interfaces/irecipecategory';
   providedIn: 'root'
 })
 export class RecipeCategoryService {
-  private apiUrl = 'https://localhost:7048/api/recipecategorie'; // Adjust API URL as needed
+  private apiUrl = 'https://localhost:7048/api/RecipeCategory'; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
 

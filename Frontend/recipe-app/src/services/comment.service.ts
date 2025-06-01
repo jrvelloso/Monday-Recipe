@@ -7,7 +7,7 @@ import { IComment } from 'src/interfaces/icomment';
   providedIn: 'root'
 })
 export class CommentService {
-  private apiUrl = 'https://localhost:7048/api/comments'; // Adjust API URL as needed
+  private apiUrl = 'https://localhost:7048/api/Comment'; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
 

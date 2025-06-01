@@ -7,7 +7,7 @@ import { IRating } from 'src/interfaces/irating';
   providedIn: 'root'
 })
 export class RatingService {
-  private apiUrl = 'https://localhost:7048/api/rating'; // Adjust API URL as needed
+  private apiUrl = 'https://localhost:7048/api/Rating'; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
 

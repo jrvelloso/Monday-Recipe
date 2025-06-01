@@ -11,11 +11,13 @@ import { RecipeCategoryComponent } from './recipecategory/recipecategory.compone
 import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { UserComponent } from './user/user.component';
+import { RatingComponent } from './rating/rating.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
    { path: 'home', component: HomeComponent },
    { path: 'ingredients', component: IngredientsComponent },
+   { path: 'rating', component: RatingComponent },
    { path: 'category', component: CategoryComponent },
    { path: 'difficulty', component: DifficultyComponent },
    { path: 'comment', component: CommentComponent },

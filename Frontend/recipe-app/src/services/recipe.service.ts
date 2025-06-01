@@ -7,7 +7,7 @@ import { IRecipe } from 'src/interfaces/irecipe';
   providedIn: 'root'
 })
 export class RecipeService {
-  private apiUrl = 'https://localhost:7048/api/recipe'; // Adjust API URL as needed
+  private apiUrl = 'https://localhost:7048/api/Recipe'; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
 

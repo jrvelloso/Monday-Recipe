@@ -7,7 +7,7 @@ import { IFavorite } from 'src/interfaces/ifavorite';
   providedIn: 'root'
 })
 export class FavoriteService {
-  private apiUrl = 'https://localhost:7048/api/favorite'; // Adjust API URL as needed
+  private apiUrl = 'https://localhost:7048/api/Favorite'; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
 

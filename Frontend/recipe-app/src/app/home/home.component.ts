@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     },
     {
       title: 'Tarte de Pêra Caramelizada',
-      image: 'assets/images/tarte-pera.jpg',
+      image: 'assets/images/receitasdefault.jpg',
       category: 'Sobremesas',
       author: 'Cátia Goarmon'
     }

@@ -7,7 +7,7 @@ import { IUser } from 'src/interfaces/iuser';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'api/users'; // Adjust API URL as needed
+  private apiUrl = 'https://localhost:7048/api/User'; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
 

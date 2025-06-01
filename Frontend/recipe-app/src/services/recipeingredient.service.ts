@@ -7,7 +7,7 @@ import { IRecipeIngredient } from 'src/interfaces/irecipeingredient';
   providedIn: 'root'
 })
 export class RecipeIngredientService {
-  private apiUrl = 'https://localhost:7048/api/recipeingredient'; // Adjust API URL as needed
+  private apiUrl = 'https://localhost:7048/api/RecipeIngredient'; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
 

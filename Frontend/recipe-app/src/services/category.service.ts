@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICategory } from 'src/interfaces/iingredients';
+import { ICategory } from 'src/interfaces/icategory';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
