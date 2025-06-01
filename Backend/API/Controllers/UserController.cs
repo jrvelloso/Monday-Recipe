@@ -51,6 +51,25 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("Login")]
+        public async Task<ActionResult<UserDto>> Login(string email, string password)
+        {
+            try
+            {
+                var item = await _service.Login(email, password);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving UserDto with Email {{email}}", email);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<UserDto>> Create(UserDto item, CancellationToken cancellationToken)
         {
