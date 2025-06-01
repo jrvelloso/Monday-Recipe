@@ -1,0 +1,29 @@
+<div class="user-container">
+  <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name" />
+
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email" />
+
+    <label for="password">Password:</label>
+    <input id="password" type="password" formControlName="password" />
+
+    <label>
+      <input type="checkbox" formControlName="isActive" />
+      Active
+    </label>
+
+    <button type="submit" [disabled]="Form.invalid">Submit</button>
+    <button type="button" (click)="clearForm()">Clear</button>
+  </form>
+
+  <div class="user-list">
+    <h3>Users</h3>
+    <ul>
+      <li *ngFor="let user of users" (click)="select(user)">
+        {{ user.name }} ({{ user.email }})
+      </li>
+    </ul>
+  </div>
+</div>

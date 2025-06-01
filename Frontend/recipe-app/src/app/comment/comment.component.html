@@ -1,0 +1,29 @@
+<div class="comment-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="comments">Comments:</label>
+    <textarea id="comments" formControlName="comments"></textarea>
+
+    <label for="userId">User ID:</label>
+    <input id="userId" type="number" formControlName="userId" />
+
+    <label for="recipeId">Recipe ID:</label>
+    <input id="recipeId" type="number" formControlName="recipeId" />
+
+    <label>
+      <input type="checkbox" formControlName="isActive" />
+      Active
+    </label>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <button type="button" (click)="clearForm()">Clear</button>
+  </form>
+
+  <div class="comment-list">
+    <h3>Comments</h3>
+    <ul>
+      <li *ngFor="let comment of comments" (click)="select(comment)">
+        {{ comment.comments }} (User: {{ comment.userId }}, Recipe: {{ comment.recipeId }})
+      </li>
+    </ul>
+  </div>
+</div>

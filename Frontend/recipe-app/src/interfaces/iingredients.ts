@@ -1,4 +1,4 @@
-export interface ICategory {
+export interface IIngredients {
   id: number;
   name: string;
   isActive: boolean;

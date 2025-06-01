@@ -1,161 +1,229 @@
-.imageFood {
-  width: 10%;
-  height: 10%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.imageFood:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
+  background-color: #fff;
+  color: #333;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
-header {
-  background: #4e514e;
-  color: white;
-  padding: 10px 20px;
+
+/* Header styles */
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 30px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
 }
-header h1 {
-  margin: 0;
-}
-.nav-buttons {
+
+.logo {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #2a4d14;
 }
-.nav-buttons button {
-  margin-left: 10px;
-  padding: 8px 12px; /* Reduzido para botões menores */
-  background: white;
-  color: #4e514e;
-  border: none;
+
+.logo img {
+  height: 40px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav select {
+  padding: 5px 10px;
+  border: 1px solid #2a4d14;
   border-radius: 5px;
+  background-color: white;
+  color: #2a4d14;
+  font-weight: 600;
   cursor: pointer;
 }
-.nav-buttons button:hover {
-  background: #e0e0e0;
+
+.nav input[type="text"] {
+  padding: 8px 12px;
+  border: 1px solid #2a4d14;
+  border-radius: 5px;
+  width: 250px;
+  font-size: 1rem;
 }
-.container {
-  padding: 17%;
-  width: 100%;
-  height: 100%;
-  min-width: 100%;
-  margin-block: 10px;
-  text-align: center;
-  flex: 1; /* Faz a área do conteúdo ocupar o espaço restante */
+
+.nav .login-btn {
+  background-color: #2a4d14;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav .login-btn:hover {
+  background-color: #1f3a0f;
+}
+
+/* Recipes section */
+.recipes-section {
+  padding: 30px 50px;
+  flex: 1;
+}
+
+.recipes-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #2a4d14;
+}
+
+.view-all {
+  float: right;
+  text-decoration: none;
+  color: #2a4d14;
+  font-weight: 600;
+  margin-top: -40px;
+  margin-bottom: 20px;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.recipe-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza verticalmente */
-  align-items: center; /* Centraliza horizontalmente */
 }
-.search-bar {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center; /* Centraliza a barra de pesquisa */
+
+.recipe-card:hover {
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
 }
-.search-bar input {
-  padding: 10px;
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px; /* Espaço entre o input e o botão */
-}
-.search-bar button {
-  padding: 10px;
-  background: #4e514e;
+
+.category-label {
+  background-color: #2a4d14;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.search-bar button:hover {
-  background: #4e514e;
-}
-.recipe-list {
-  margin-top: 20px;
-  display: flex; /* Exibe as receitas em linha */
-  flex-wrap: wrap; /* Permite que as receitas se movam para a linha seguinte se não houver espaço */
-  justify-content: center; /* Centraliza as receitas */
-}
-.recipe-item {
-  background: white;
-  padding: 15px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  position: absolute;
   margin: 10px;
   border-radius: 5px;
-  width: 200px; /* Largura dos itens da receita */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  text-align: center; /* Centraliza o texto dentro do item da receita */
+  text-transform: uppercase;
+  z-index: 1;
 }
-.recipe-item:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-footer {
-  background: #4e514e;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  position: relative;
-  bottom: 0;
+
+.recipe-card img {
   width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
-.form-container {
-  display: none;
-  margin: 20px auto;
-  text-align: center;
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 400px; /* Largura do formulário */
-  padding-left: 20px; /* Espaço à esquerda */
-  padding-right: 20px; /* Espaço à direita */
+
+.recipe-info {
+  padding: 15px 20px;
+  flex-grow: 1;
 }
-.form-container input {
-  width: calc(100% - 20px); /* Ajustado para o padding */
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+.recipe-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2a4d14;
 }
-.form-container button {
-  padding: 8px; /* Reduzido para botões menores */
-  background: #4e514e;
+
+.recipe-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #2a4d14;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 30%; /* Botão ocupa 30% da largura */
-  margin: 5px; /* Margem entre os botões */
-}
-.form-container button:hover {
-  background: #4e514e;
-}
-.back-button {
-  margin-top: 10px; /* Ajustado para margem superior */
-  padding: 8px; /* Reduzido para botões menores */
-  background: #d9534f;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 30%; /* Botão ocupa 30% da largura */
-}
-.back-button:hover {
-  background: #c9302c;
-}
-.button-container {
   display: flex;
-  justify-content: space-between; /* Espaço entre os botões */
-  margin-top: 10px; /* Margem superior para o container de botões */
+  justify-content: space-around;
+  padding: 30px 50px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.contact-btn {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  background-color: white;
+  color: #2a4d14;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+.social-icons a:hover img {
+  filter: brightness(0.7) invert(0.7);
 }

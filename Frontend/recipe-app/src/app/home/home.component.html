@@ -1,153 +1,62 @@
-<header>
-  <h1>Receitas Deliciosas</h1>
-  <div class="nav-buttons">
-      <button onclick="showLogin()">Login</button>
-      <button onclick="showRegister()">Cadastro</button>
+<div class="header">
+  <div class="logo">
+    <img src="assets/images/masterchef-logo.png" alt="MasterChef Logo" />
+    <span>MasterChef</span>
   </div>
-</header>
-
-<div class="container">
-  <div class="search-bar" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Pesquisar receitas...">
-      <button onclick="searchRecipes()">Buscar</button>
-  </div>
-
-  <div class="recipe-list" id="recipeList">
-      <!-- As receitas encontradas serão exibidas aqui -->
-  </div>
-
-  <div class="form-container" id="login-form">
-      <h2>Login</h2>
-      <input type="text" id="loginUser" placeholder="Usuário" required>
-      <input type="password" id="loginPassword" placeholder="Senha" required>
-      <div class="error-message" id="loginError" style="color: red;"></div>
-      <div class="button-container">
-          <button type="button" onclick="validateLogin()">Entrar</button>
-          <button class="toggle-button" onclick="toggleForms()">Criar conta</button>
-          <button class="back-button" onclick="goBack()">Voltar</button>
-      </div>
-  </div>
-
-  <div class="form-container" id="register-form">
-      <h2>Cadastro</h2>
-      <input type="text" id="registerName" placeholder="Nome" required>
-      <input type="email" id="registerEmail" placeholder="Email" required>
-      <input type="password" id="registerPassword" placeholder="Senha" required>
-      <div class="error-message" id="registerError" style="color: red;"></div>
-      <div class="button-container">
-          <button type="button" onclick="validateRegister()">Cadastrar</button>
-          <button class="toggle-button" onclick="toggleForms()">Já tenho uma conta</button>
-          <button class="back-button" onclick="goBack()">Voltar</button>
-      </div>
+  <div class="nav">
+    <select>
+      <option>Receitas</option>
+      <option>Entradas</option>
+      <option>Pratos Principais</option>
+      <option>Sobremesas</option>
+    </select>
+<input
+  type="text"
+  placeholder="Pesquise por Receitas .."
+  (input)="onSearchChange($any($event.target).value)"
+/>
+    <button class="login-btn" (click)="onLoginClick()">Login/Registo</button>
   </div>
 </div>
 
-<footer>
-  <p>&copy; 2025 Receitas Deliciosas. Todos os direitos reservados.</p>
+<section class="recipes-section">
+  <h2>Receitas</h2>
+  <a href="#" class="view-all">Ver tudo ></a>
+  <div class="recipes-grid">
+    <div
+      class="recipe-card"
+      *ngFor="let recipe of filteredRecipes"
+      tabindex="0"
+      role="button"
+    >
+      <div class="category-label">{{ recipe.category | uppercase }}</div>
+      <img [src]="recipe.image" [alt]="recipe.title" />
+      <div class="recipe-info">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.author }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-section">
+    <h3>O nosso site</h3>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Receitas</a></li>
+    </ul>
+  </div>
+  <div class="footer-section">
+    <h3>Junte-se a nós</h3>
+    <button class="contact-btn">CONTACTE-NOS</button>
+  </div>
+  <div class="footer-section">
+    <h3>SIGA-NOS!</h3>
+    <div class="social-icons">
+      <a href="#"><img src="assets/images/facebook-icon.png" alt="Facebook" /></a>
+      <a href="#"><img src="assets/images/instagram-icon.png" alt="Instagram" /></a>
+      <a href="#"><img src="assets/images/youtube-icon.png" alt="YouTube" /></a>
+    </div>
+  </div>
 </footer>
-
-<script>
-  function showLogin() {
-      document.getElementById('login-form').style.display = 'block';
-      document.getElementById('register-form').style.display = 'none';
-      document.getElementById('recipeList').style.display = 'none';
-      document.getElementById('searchBar').style.display = 'none';
-  }
-
-  function showRegister() {
-      document.getElementById('register-form').style.display = 'block';
-      document.getElementById('login-form').style.display = 'none';
-      document.getElementById('recipeList').style.display = 'none';
-      document.getElementById('searchBar').style.display = 'none';
-  }
-
-  function toggleForms() {
-      const loginForm = document.getElementById('login-form');
-      const registerForm = document.getElementById('register-form');
-      const loginError = document.getElementById('loginError');
-      const registerError = document.getElementById('registerError');
-
-      if (loginForm.style.display === 'none') {
-          loginForm.style.display = 'block';
-          registerForm.style.display = 'none';
-          registerError.innerHTML = ''; // Clear error message
-      } else {
-          loginForm.style.display = 'none';
-          registerForm.style.display = 'block';
-          loginError.innerHTML = ''; // Clear error message
-      }
-  }
-
-  function goBack() {
-      document.getElementById('login-form').style.display = 'none';
-      document.getElementById('register-form').style.display = 'none';
-      document.getElementById('recipeList').style.display = 'flex'; // Exibe a lista de receitas
-      document.getElementById('loginError').innerHTML = ''; // Clear login error message
-      document.getElementById('registerError').innerHTML = ''; // Clear register error message
-
-      document.getElementById('searchBar').style.display = 'block'; // Exibe a barra de busca
-  }
-
-  function searchRecipes() {
-      const searchInput = document.getElementById('searchInput').value.toLowerCase();
-      const recipeList = document.getElementById('recipeList');
-      recipeList.innerHTML = ''; // Limpa a lista de receitas
-
-      // Simulação de receitas
-      const recipes = [
-          { name: 'Receita 1', description: 'Descrição breve da Receita 1.' },
-          { name: 'Receita 2', description: 'Descrição breve da Receita 2.' },
-          { name: 'Receita 3', description: 'Descrição breve da Receita 3.' }
-      ];
-
-      const filteredRecipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(searchInput));
-
-      if (filteredRecipes.length > 0) {
-          filteredRecipes.forEach(recipe => {
-              const recipeItem = document.createElement('div');
-              recipeItem.className = 'recipe-item';
-              recipeItem.innerHTML = `<h3>${recipe.name}</h3><p>${recipe.description}</p>`;
-              recipeItem.onclick = () => viewRecipeDetails(recipe.name);
-              recipeList.appendChild(recipeItem);
-          });
-      } else {
-          recipeList.innerHTML = '<p>Nenhuma receita encontrada.</p>';
-      }
-
-      recipeList.style.display = 'flex'; // Exibe a lista de receitas
-  }
-
-  function viewRecipeDetails(recipeName) {
-      alert("Visualizando detalhes da " + recipeName);
-      // Aqui você pode redirecionar para uma página de detalhes da receita ou abrir um modal com as informações.
-  }
-
-  function validateLogin() {
-      const user = document.getElementById('loginUser').value;
-      const password = document.getElementById('loginPassword').value;
-      const errorDiv = document.getElementById('loginError');
-      errorDiv.innerHTML = '';
-
-      if (!user || !password) {
-          errorDiv.innerHTML = 'Por favor, preencha todos os campos.';
-      } else {
-          // Proceed with login logic
-          alert('Login realizado com sucesso!');
-      }
-  }
-
-  function validateRegister() {
-      const name = document.getElementById('registerName').value;
-      const email = document.getElementById('registerEmail').value;
-      const password = document.getElementById('registerPassword').value;
-      const errorDiv = document.getElementById('registerError');
-      errorDiv.innerHTML = '';
-
-      if (!name || !email || !password) {
-          errorDiv.innerHTML = 'Por favor, preencha todos os campos.';
-      } else {
-          // Proceed with registration logic
-          alert('Cadastro realizado com sucesso!');
-      }
-  }
-</script>

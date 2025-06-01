@@ -1,5 +1,5 @@
-export interface IIngredients {
+export interface ICategory {
   id: number;
-  name: string;
   isActive: boolean;
+  name: string;
 }

@@ -5,6 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { DifficultyComponent } from './difficulty/difficulty.component';
 import { MeasurementTypeComponent } from './measurement-type/measurement-type.component';
+import { CommentComponent } from './comment/comment.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { RecipeCategoryComponent } from './recipecategory/recipecategory.component';
+import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -12,7 +18,14 @@ const routes: Routes = [
    { path: 'ingredients', component: IngredientsComponent },
    { path: 'category', component: CategoryComponent },
    { path: 'difficulty', component: DifficultyComponent },
+   { path: 'comment', component: CommentComponent },
+   { path: 'favorite', component: FavoriteComponent },
    { path: 'measurementtype', component: MeasurementTypeComponent },
+   { path: 'recipecategory', component: RecipeCategoryComponent },
+   { path: 'recipeingredient', component: RecipeIngredientComponent },
+   { path: 'recipe', component: RecipeComponent },
+   { path: 'user', component: UserComponent },
+
 ];
 
 @NgModule({

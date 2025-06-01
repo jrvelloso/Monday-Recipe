@@ -11,6 +11,12 @@ import { HomeComponent } from './home/home.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { DifficultyComponent } from './difficulty/difficulty.component';
 import { MeasurementTypeComponent } from './measurement-type/measurement-type.component';
+import { CommentComponent } from './comment/comment.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { RatingComponent } from './rating/rating.component';
+import { RecipeCategoryComponent } from './recipecategory/recipecategory.component';
+import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,13 @@ import { MeasurementTypeComponent } from './measurement-type/measurement-type.co
     IngredientsComponent,
     CategoryComponent,
     DifficultyComponent,
-    MeasurementTypeComponent
+    MeasurementTypeComponent,
+    CommentComponent,
+    FavoriteComponent,
+    RatingComponent,
+    RecipeCategoryComponent,
+    RecipeIngredientComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,

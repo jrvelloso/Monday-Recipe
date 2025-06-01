@@ -1,6 +1,6 @@
+import { IIngredients } from 'src/interfaces/iingredients';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IIngredients } from 'src/interfaces/icategory';
 import { IngredientsService } from 'src/services/ingredients.service';
 
 

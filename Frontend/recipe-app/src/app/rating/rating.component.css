@@ -1,0 +1,57 @@
+.rating-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  margin-top: 15px;
+  margin-right: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #2a4d14;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.rating-list {
+  margin-top: 20px;
+}
+
+.rating-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.rating-list li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.rating-list li:hover {
+  background-color: #f0f0f0;
+}
