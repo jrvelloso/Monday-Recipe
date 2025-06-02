@@ -1,0 +1,60 @@
+<div class="register-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2>Registo</h2>
+    <div class="info-box">
+      <span>Faça seu registro para guardar suas receitas favoritas !</span>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input id="name" type="text" formControlName="name" />
+        <div *ngIf="submitted && f.name.errors" class="error">
+          <div *ngIf="f.name.errors.required">Nome é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" />
+        <div *ngIf="submitted && f.email.errors" class="error">
+          <div *ngIf="f.email.errors.required">Email é obrigatório</div>
+          <div *ngIf="f.email.errors.email">Email deve ser válido</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" />
+        <div *ngIf="submitted && f.password.errors" class="error">
+          <div *ngIf="f.password.errors.required">Password é obrigatória</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="birthdate">Data de Nasc.</label>
+        <input id="birthdate" type="date" formControlName="birthdate" />
+        <div *ngIf="submitted && f.birthdate.errors" class="error">
+          <div *ngIf="f.birthdate.errors.required">Data de nascimento é obrigatória</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group privacy-policy">
+      <label>
+        <input type="checkbox" formControlName="privacyPolicy" />
+        Confirmo que li e compreendi a <a href="#">Política de Privacidade</a>
+      </label>
+      <div *ngIf="submitted && f.privacyPolicy.errors" class="error">
+        <div>É necessário aceitar a política de privacidade</div>
+      </div>
+    </div>
+
+    <button type="submit">Registo</button>
+
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+  </form>
+</div>

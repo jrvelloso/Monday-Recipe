@@ -12,6 +12,8 @@ import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.c
 import { RecipeComponent } from './recipe/recipe.component';
 import { UserComponent } from './user/user.component';
 import { RatingComponent } from './rating/rating.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -27,6 +29,9 @@ const routes: Routes = [
    { path: 'recipeingredient', component: RecipeIngredientComponent },
    { path: 'recipe', component: RecipeComponent },
    { path: 'user', component: UserComponent },
+   { path: 'login', component: LoginComponent },
+   { path: 'register', component: RegisterComponent },
+
 
 ];
 
