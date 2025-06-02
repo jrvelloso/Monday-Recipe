@@ -7,16 +7,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
+import { CommentComponent } from './comment/comment.component';
+import { DifficultyComponent } from './difficulty/difficulty.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
-import { DifficultyComponent } from './difficulty/difficulty.component';
+import { LoginComponent } from './login/login.component';
 import { MeasurementTypeComponent } from './measurement-type/measurement-type.component';
-import { CommentComponent } from './comment/comment.component';
-import { FavoriteComponent } from './favorite/favorite.component';
+import { RatingComponent } from './rating/rating.component';
+import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeCategoryComponent } from './recipecategory/recipecategory.component';
 import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
-import { RecipeComponent } from './recipe/recipe.component';
-import { RatingComponent } from './rating/rating.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +35,12 @@ import { RatingComponent } from './rating/rating.component';
     RatingComponent,
     RecipeCategoryComponent,
     RecipeIngredientComponent,
-    RecipeComponent
-  ],
+    RecipeComponent,
+      FooterComponent,
+      LoginComponent,
+      RegisterComponent,
+      HeaderComponent
+   ],
   imports: [
     BrowserModule,
     CommonModule,

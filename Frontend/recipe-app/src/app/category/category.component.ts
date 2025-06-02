@@ -1,7 +1,8 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/services/category.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ICategory } from 'src/interfaces/icategory';
+import { CategoryService } from 'src/services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -12,11 +13,15 @@ export class CategoryComponent implements OnInit {
 
   categoryForm!: FormGroup;
  // categories: any[] = []; // Define your categories array
-  selectedCategory: any;
+  selectedCategoryId!: number;
+  selectedCategory!: ICategory;
   categories!: ICategory[];
 
 
-  constructor(private categoryService: CategoryService, private fb: FormBuilder) {
+  constructor(private categoryService: CategoryService,
+    private router: Router,
+    private fb: FormBuilder
+    ) {
     this.categoryForm = this.fb.group({
       name: ['', Validators.required],
       isActive: [false]
@@ -42,6 +47,7 @@ export class CategoryComponent implements OnInit {
       name: category.name,
       isActive: category.isActive
     });
+    this.selectedCategoryId = category.id;
   }
 
   createCategory(category: ICategory): void {
@@ -62,6 +68,12 @@ export class CategoryComponent implements OnInit {
   }
 
 
+  return(): void {
+    this.router.navigate(['/home']);
+  }
+
+
+
   deleteCategory(id: number): void {
     this.categoryService.deleteCategory(id).subscribe(() => {
       this.fetchCategories();
@@ -70,7 +82,7 @@ export class CategoryComponent implements OnInit {
 
   onSubmit() {
     if (this.categoryForm.valid) {
-      if (this.selectedCategory) {
+    if (this.selectedCategory) {
         // Update selectedCategory with form values
         this.selectedCategory.name = this.categoryForm.value.name;
         this.selectedCategory.isActive = this.categoryForm.value.isActive;
@@ -83,7 +95,7 @@ export class CategoryComponent implements OnInit {
 
   clearForm() {
     this.categoryForm.reset();
-    this.selectedCategory = null;
+    this.selectedCategory = {} as ICategory;
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  searchQuery: string = '';
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
+
+
+
+
 
   recipes = [
     {
@@ -39,13 +47,10 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  searchQuery: string = '';
 
-  onSearchChange(query: string) {
-    this.searchQuery = query.toLowerCase();
-  }
 
-  get filteredRecipes() {
+
+ get filteredRecipes() {
     if (!this.searchQuery) {
       return this.recipes;
     }
@@ -55,8 +60,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  onLoginClick() {
-    alert('Login/Register clicked');
-  }
+
+
 
 }

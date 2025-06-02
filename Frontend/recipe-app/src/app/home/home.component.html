@@ -1,34 +1,8 @@
-<div class="header">
-  <div class="logo">
-    <img src="assets/images/masterchef-logo.png" alt="MasterChef Logo" />
-    <span>MasterChef Receitas</span>
-  </div>
-  <div class="nav">
-    <select>
-      <option>Receitas</option>
-      <option href="https://localhost:7048/api/Category">Categoria</option>
-      <option href="https://localhost:7048/api/Ingredient">Ingredientes</option>
-      <option href="https://localhost:7048/api/Comment">Comentários</option>
-    </select>
-<input
-  type="text"
-  placeholder="Pesquise por Receitas..."
-  (input)="onSearchChange($any($event.target).value)"
-/>
-    <button class="login-btn" (click)="onLoginClick()">Login/Registo</button>
-  </div>
-</div>
-
 <section class="recipes-section">
   <h2>Receitas</h2>
   <a href="#" class="view-all">Ver tudo ></a>
   <div class="recipes-grid">
-    <div
-      class="recipe-card"
-      *ngFor="let recipe of filteredRecipes"
-      tabindex="0"
-      role="button"
-    >
+    <div class="recipe-card" *ngFor="let recipe of filteredRecipes" tabindex="0" role="button">
       <div class="category-label">{{ recipe.category | uppercase }}</div>
       <img [src]="recipe.image" [alt]="recipe.title" />
       <div class="recipe-info">
@@ -38,4 +12,3 @@
     </div>
   </div>
 </section>
-

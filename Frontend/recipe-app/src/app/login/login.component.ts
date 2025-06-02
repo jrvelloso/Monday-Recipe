@@ -8,28 +8,28 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
+  loginFormReceita!: FormGroup ;
   submitted = false;
   errorMessage = '';
 
   constructor(private fb: FormBuilder, private userService: UserService) {
-    this.loginForm = this.fb.group({
+    this.loginFormReceita = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() { return this.loginFormReceita.controls; }
 
   onSubmit() {
     this.submitted = true;
     this.errorMessage = '';
 
-    if (this.loginForm.invalid) {
+    if (this.loginFormReceita.invalid) {
       return;
     }
 
-    const { email, password } = this.loginForm.value;
+    const { email, password } = this.loginFormReceita.value;
     this.userService.login(email, password).subscribe({
       next: (res: any) => {
         // Handle successful login, e.g., redirect or store token
