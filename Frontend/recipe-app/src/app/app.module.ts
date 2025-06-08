@@ -21,6 +21,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeCategoryComponent } from './recipecategory/recipecategory.component';
 import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RegisterComponent } from './register/register.component';
       FooterComponent,
       LoginComponent,
       RegisterComponent,
-      HeaderComponent
+      HeaderComponent,
+      AuthComponent
    ],
   imports: [
     BrowserModule,

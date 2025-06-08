@@ -1,0 +1,70 @@
+.auth-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #2a4d14;
+  margin-bottom: 1rem;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 700;
+  color: #2a4d14;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.tabs button.active {
+  border-color: #2a4d14;
+}
+
+.tab-content {
+  display: flex;
+  gap: 2rem;
+}
+
+app-register, app-login {
+  flex: 1;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+.register-container, .login-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+.info-box {
+  background-color: #eee;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-box::before {
+  content: "♥";
+  color: #2a4d14;
+  font-size: 1.5rem;
+}

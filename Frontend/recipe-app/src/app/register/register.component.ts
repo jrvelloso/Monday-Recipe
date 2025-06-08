@@ -17,7 +17,6 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      birthdate: ['', Validators.required],
       password: ['', Validators.required],
       privacyPolicy: [false, Validators.requiredTrue]
     });
@@ -38,7 +37,6 @@ export class RegisterComponent {
       id: 0,
       name: this.registerForm.value.name,
       email: this.registerForm.value.email,
-      birthdate: this.registerForm.value.birthdate,
       password: this.registerForm.value.password,
       isActive: true,
       isRegisted: true,

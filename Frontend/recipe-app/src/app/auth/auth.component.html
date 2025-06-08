@@ -1,0 +1,11 @@
+<div class="auth-container">
+  <div class="tabs">
+    <button [class.active]="activeTab === 'register'" (click)="setActiveTab('register')">Registo</button>
+    <button [class.active]="activeTab === 'login'" (click)="setActiveTab('login')">Login</button>
+  </div>
+  <div class="tab-content">
+    <app-register *ngIf="activeTab === 'register'"></app-register>
+    <app-login *ngIf="activeTab === 'login'"></app-login>
+  </div>
+</div>
+

@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
 
   onLoginClick() {
-    alert('Login/Register clicked');
+    this.router.navigate(['/auth']);
   }
 
   onSearchChange(query: string) {

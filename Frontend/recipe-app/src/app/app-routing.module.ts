@@ -14,8 +14,7 @@ import { RecipeCategoryComponent } from './recipecategory/recipecategory.compone
 import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-
-const Home = "home";
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -31,10 +30,9 @@ const routes: Routes = [
    { path: 'recipeingredient', component: RecipeIngredientComponent },
    { path: 'recipe', component: RecipeComponent },
    { path: 'user', component: UserComponent },
+   { path: 'auth', component: AuthComponent },
    { path: 'login', component: LoginComponent },
    { path: 'register', component: RegisterComponent },
-
-
 ];
 
 @NgModule({
