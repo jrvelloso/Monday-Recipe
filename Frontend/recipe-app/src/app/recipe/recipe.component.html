@@ -1,2 +1,27 @@
-  <h1>Receitas</h1>
+<div class="recipe-container" *ngIf="recipe">
+  <nav class="breadcrumb">
+    <a routerLink="/home">Home</a> >
+    <a routerLink="/category">{{ recipe.category.name }}</a> >
+    <span>{{ recipe.title }}</span>
+  </nav>
 
+  <h1 class="recipe-title">{{ recipe.title }}</h1>
+  <p class="recipe-author">Receita de: <a class="author-link" href="#">{{ recipe.user.name }}</a></p>
+
+  <img class="recipe-image" src="assets/images/receitasdefault.jpg" alt="{{ recipe.title }}" />
+
+  <div class="recipe-content">
+    <app-recipeingredient [recipeId]="recipe.id"></app-recipeingredient>
+
+    <div class="preparation">
+      <h2>Preparação</h2>
+      <p>{{ recipe.description }}</p>
+      <p><strong>Tempo de preparação:</strong> {{ recipe.preparationTime }}</p>
+    </div>
+  </div>
+
+  <app-comment [recipeId]="recipe.id"></app-comment>
+</div>
+
+  <app-comment [recipeId]="recipe?.id"></app-comment>
+</div>

@@ -14,6 +14,7 @@ export class RecipeComponent implements OnInit {
   form!: FormGroup;
   recipes!: IRecipe[];
   selected: IRecipe | null = null;
+recipe: any;
 
   constructor(private service: RecipeService, private fb: FormBuilder) {
     this.form = this.fb.group({

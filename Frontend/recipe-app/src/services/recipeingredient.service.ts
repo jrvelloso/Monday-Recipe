@@ -15,6 +15,10 @@ export class RecipeIngredientService {
     return this.http.get<IRecipeIngredient[]>(this.apiUrl);
   }
 
+  getByRecipeId(recipeId: number): Observable<IRecipeIngredient[]> {
+    return this.http.get<IRecipeIngredient[]>(`${this.apiUrl}/ByRecipe/${recipeId}`);
+  }
+
   create(recipeIngredient: IRecipeIngredient): Observable<IRecipeIngredient> {
     return this.http.post<IRecipeIngredient>(this.apiUrl, recipeIngredient);
   }

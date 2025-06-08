@@ -28,7 +28,7 @@ const routes: Routes = [
    { path: 'measurementtype', component: MeasurementTypeComponent },
    { path: 'recipecategory', component: RecipeCategoryComponent },
    { path: 'recipeingredient', component: RecipeIngredientComponent },
-   { path: 'recipe', component: RecipeComponent },
+   { path: 'recipe/:id', component: RecipeComponent },
    { path: 'user', component: UserComponent },
    { path: 'auth', component: AuthComponent },
    { path: 'login', component: LoginComponent },
