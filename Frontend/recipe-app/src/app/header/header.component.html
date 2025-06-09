@@ -15,16 +15,16 @@
     <input type="text" placeholder="Pesquise por Receitas..." (input)="onSearchChange($any($event.target).value)" />
 
     <ng-container *ngIf="currentUser; else showLogin">
-      <div class="user-menu" (click)="toggleDropdown()">
+      <button class="login-btn user-menu" (click)="toggleDropdown()">
         Olá {{ currentUser.name }}!
-        <div class="dropdown" *ngIf="showDropdown">
-          <ul>
-            <li (click)="navigateTo('/user')">Meu Perfil</li>
-            <li (click)="navigateTo('/favorite')">Meus Favoritos</li>
-            <li *ngIf="currentUser.isAdmin" (click)="navigateTo('/admin')">Área de Admin</li>
-            <li (click)="logout()">Sair</li>
-          </ul>
-        </div>
+      </button>
+      <div class="dropdown" *ngIf="showDropdown">
+        <ul>
+          <li (click)="navigateTo('/user')">Meu Perfil</li>
+          <li (click)="navigateTo('/favorite')">Meus Favoritos</li>
+          <li *ngIf="currentUser.isAdmin" (click)="navigateTo('/admin')">Área de Admin</li>
+          <li (click)="logout()">Sair</li>
+        </ul>
       </div>
     </ng-container>
     <ng-template #showLogin>

@@ -62,7 +62,8 @@ namespace API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(item);
+                var user = await _service.GetUserByEmail(request.Email);
+                return Ok(user);
             }
             catch (Exception ex)
             {
