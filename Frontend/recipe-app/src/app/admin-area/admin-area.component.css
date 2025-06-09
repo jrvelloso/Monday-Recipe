@@ -1,4 +1,99 @@
-/* Styles for Admin Area component */
 .admin-area {
   padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.admin-area h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.admin-area section {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.admin-area section h3 {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.admin-area form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.admin-area form input[type="text"] {
+  width: 200px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.admin-area form button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 80px;
+  font-weight: 600;
+}
+
+.admin-area form button[type="submit"] {
+  background-color: #2a4d14; /* green */
+  color: white;
+}
+
+.admin-area form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.admin-area ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.admin-area ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-area ul li button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background-color 0.3s ease;
+  min-width: 60px;
+  font-weight: 600;
+}
+
+.admin-area ul li button:first-of-type {
+  background-color: #0555aa; /* blue */
+  color: white;
+}
+
+.admin-area ul li button:first-of-type:hover {
+  background-color: #0056b3;
+}
+
+.admin-area ul li button:last-of-type {
+  background-color: #dc3545; /* red */
+  color: white;
+}
+
+.admin-area ul li button:last-of-type:hover {
+  background-color: #a71d2a;
 }

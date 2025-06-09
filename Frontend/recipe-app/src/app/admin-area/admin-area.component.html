@@ -1,17 +1,40 @@
 <div class="admin-area">
   <h2>Área de Admin - Gestão de Receitas</h2>
-  <div *ngIf="pendingRecipes.length > 0; else noPending">
-    <ul>
-      <li *ngFor="let recipe of pendingRecipes">
-        <h3>{{ recipe.title }}</h3>
-        <p>{{ recipe.description }}</p>
-        <button (click)="updateRecipeStatus(recipe, 'Approved')">Aprovar</button>
-        <button (click)="updateRecipeStatus(recipe, 'Rejected')">Rejeitar</button>
-      </li>
-    </ul>
-  </div>
-  <ng-template #noPending>
-    <p>Não há receitas pendentes.</p>
-  </ng-template>
-  <!-- TODO: Add UI for CRUD of categories, ingredients, difficulty, measurement types -->
+
+  <section>
+    <h3>Receitas Pendentes</h3>
+    <div *ngIf="pendingRecipes.length > 0; else noPending">
+      <ul>
+        <li *ngFor="let recipe of pendingRecipes">
+          <h4>{{ recipe.title }}</h4>
+          <p>{{ recipe.description }}</p>
+          <button (click)="updateRecipeStatus(recipe, 'Approved')">Aprovar</button>
+          <button (click)="updateRecipeStatus(recipe, 'Rejected')">Rejeitar</button>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noPending>
+      <p>Não há receitas pendentes.</p>
+    </ng-template>
+  </section>
+
+  <section>
+    <h3>Gestão de Categorias</h3>
+    <app-category></app-category>
+  </section>
+
+  <section>
+    <h3>Gestão de Ingredientes</h3>
+    <app-ingredients></app-ingredients>
+  </section>
+
+  <section>
+    <h3>Gestão de Dificuldade</h3>
+    <app-difficulty></app-difficulty>
+  </section>
+
+  <section>
+    <h3>Gestão de Tipos de Medida</h3>
+    <app-measurement-type></app-measurement-type>
+  </section>
 </div>
