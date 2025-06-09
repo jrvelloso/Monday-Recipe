@@ -9,9 +9,9 @@
         public int DifficultyId { get; set; }
         public int UserId { get; set; }
         public string Status { get; set; } = "Pending";
-        public CategoryDto Category { get; set; }
-        public DifficultyDto Difficulty { get; set; }
-        public UserDto User { get; set; }
+        public Category Category { get; set; }
+        public Difficulty Difficulty { get; set; }
+        public User User { get; set; }
 
     }
 }

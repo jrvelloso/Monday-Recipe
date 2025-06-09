@@ -14,7 +14,7 @@ namespace Models.Mappers
                 Id = entity.Id,
                 Comments = entity.Comments,
                 RecipeId = entity.RecipeId,
-                UsertId = entity.UsertId,
+                UserId = entity.UserId,
                 IsAtive = entity.IsAtive,
             };
         }
@@ -34,7 +34,7 @@ namespace Models.Mappers
             {
                 Comments = entityDto.Comments,
                 RecipeId = entityDto.RecipeId,
-                UsertId = entityDto.UsertId,
+                UserId = entityDto.UserId,
                 IsAtive = entityDto.IsAtive,
             };
         }
@@ -46,7 +46,7 @@ namespace Models.Mappers
 
             entity.Comments = entityDto.Comments;
             entity.RecipeId = entityDto.RecipeId;
-            entity.UsertId = entityDto.UsertId;
+            entity.UserId = entityDto.UserId;
             entity.IsAtive = entityDto.IsAtive;
             return entity;
         }

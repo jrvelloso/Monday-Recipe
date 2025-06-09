@@ -11,7 +11,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DbContextRecipe))]
-    [Migration("20250515210054_initial")]
+    [Migration("20250609113746_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Models.Category", b =>
+            modelBuilder.Entity("Models.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +44,7 @@ namespace Repository.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Models.Comment", b =>
+            modelBuilder.Entity("Models.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,15 +62,19 @@ namespace Repository.Migrations
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsertId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Models.Difficulty", b =>
+            modelBuilder.Entity("Models.Entities.Difficulty", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +94,7 @@ namespace Repository.Migrations
                     b.ToTable("Difficulties");
                 });
 
-            modelBuilder.Entity("Models.Favorite", b =>
+            modelBuilder.Entity("Models.Entities.Favorite", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,10 +113,14 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("Favorites");
                 });
 
-            modelBuilder.Entity("Models.Ingredient", b =>
+            modelBuilder.Entity("Models.Entities.Ingredient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -132,7 +140,7 @@ namespace Repository.Migrations
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("Models.MeasurementType", b =>
+            modelBuilder.Entity("Models.Entities.MeasurementType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,7 +160,7 @@ namespace Repository.Migrations
                     b.ToTable("MeasurementTypes");
                 });
 
-            modelBuilder.Entity("Models.Rating", b =>
+            modelBuilder.Entity("Models.Entities.Rating", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -174,10 +182,14 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("Models.Recipe", b =>
+            modelBuilder.Entity("Models.Entities.Recipe", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -224,7 +236,7 @@ namespace Repository.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("Models.RecipeCategory", b =>
+            modelBuilder.Entity("Models.Entities.RecipeCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -245,7 +257,7 @@ namespace Repository.Migrations
                     b.ToTable("RecipeCategories");
                 });
 
-            modelBuilder.Entity("Models.RecipeIngredient", b =>
+            modelBuilder.Entity("Models.Entities.RecipeIngredient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -279,7 +291,7 @@ namespace Repository.Migrations
                     b.ToTable("RecipeIngredients");
                 });
 
-            modelBuilder.Entity("Models.User", b =>
+            modelBuilder.Entity("Models.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -288,10 +300,6 @@ namespace Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Favourites")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -312,30 +320,83 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Recipes")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Models.Recipe", b =>
+            modelBuilder.Entity("Models.Entities.Comment", b =>
                 {
-                    b.HasOne("Models.Category", "Category")
+                    b.HasOne("Models.Entities.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Models.Entities.Favorite", b =>
+                {
+                    b.HasOne("Models.Entities.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Models.Entities.Rating", b =>
+                {
+                    b.HasOne("Models.Entities.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Models.Entities.Recipe", b =>
+                {
+                    b.HasOne("Models.Entities.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Difficulty", "Difficulty")
+                    b.HasOne("Models.Entities.Difficulty", "Difficulty")
                         .WithMany()
                         .HasForeignKey("DifficultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.User", "User")
+                    b.HasOne("Models.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,9 +409,9 @@ namespace Repository.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Models.RecipeCategory", b =>
+            modelBuilder.Entity("Models.Entities.RecipeCategory", b =>
                 {
-                    b.HasOne("Models.Category", "Category")
+                    b.HasOne("Models.Entities.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -359,21 +420,21 @@ namespace Repository.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Models.RecipeIngredient", b =>
+            modelBuilder.Entity("Models.Entities.RecipeIngredient", b =>
                 {
-                    b.HasOne("Models.Ingredient", "Ingredient")
+                    b.HasOne("Models.Entities.Ingredient", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.MeasurementType", "MeasurementType")
+                    b.HasOne("Models.Entities.MeasurementType", "MeasurementType")
                         .WithMany()
                         .HasForeignKey("MeasurementTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Recipe", "Recipe")
+                    b.HasOne("Models.Entities.Recipe", "Recipe")
                         .WithMany()
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)

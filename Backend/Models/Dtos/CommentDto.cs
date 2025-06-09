@@ -1,11 +1,16 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using Models.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class CommentDto : BaseModel
+    [NotMapped]
+    public class CommentDto : BaseModelDto
     {
         public string Comments { get; set; }
-        public int UsertId { get; set; }
+        public int UserId { get; set; }
         public int RecipeId { get; set; }
+        public User User { get; set; }
+        public Recipe Recipe { get; set; }
     }
 }

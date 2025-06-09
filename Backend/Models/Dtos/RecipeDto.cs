@@ -1,8 +1,11 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using Models.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class RecipeDto : BaseModel
+    [NotMapped]
+    public class RecipeDto : BaseModelDto
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -10,9 +13,9 @@ namespace Models
         public int CategoryId { get; set; }
         public int DifficultyId { get; set; }
         public int UserId { get; set; }
-        public CategoryDto Category { get; set; }
-        public DifficultyDto Difficulty { get; set; }
-        public UserDto User { get; set; }
+        public Category Category { get; set; }
+        public Difficulty Difficulty { get; set; }
+        public User User { get; set; }
 
     }
 }

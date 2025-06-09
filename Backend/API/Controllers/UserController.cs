@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.Dtos;
 using Service.Interfaces;
 
 namespace API.Controllers
@@ -51,12 +52,12 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("Login")]
-        public async Task<ActionResult<UserDto>> Login(string email, string password)
+        [HttpPost("Login")]
+        public async Task<ActionResult<UserDto>> Login([FromBody] LoginRequest request)
         {
             try
             {
-                var item = await _service.Login(email, password);
+                var item = await _service.Login(request.Email, request.Password);
                 if (item == null)
                 {
                     return NotFound();
@@ -65,7 +66,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error retrieving UserDto with Email {{email}}", email);
+                _logger.LogError(ex, "Error retrieving UserDto with Email {{email}}", request.Email);
                 return StatusCode(500, "Internal server error");
             }
         }

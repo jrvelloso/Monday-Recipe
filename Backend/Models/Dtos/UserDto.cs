@@ -1,8 +1,10 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class UserDto : BaseModel
+    [NotMapped]
+    public class UserDto : BaseModelDto
     {
         public string Name { get; set; }
         public string Email { get; set; }

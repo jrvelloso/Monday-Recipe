@@ -1,15 +1,18 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using Models.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class RecipeIngredientDto : BaseModel
+    [NotMapped]
+    public class RecipeIngredientDto : BaseModelDto
     {
         public int Amount { get; set; }
         public int MeasurementTypeId { get; set; }
         public int IngredientId { get; set; }
         public int RecipeId { get; set; }
-        public MeasurementTypeDto MeasurementType { get; set; }
-        public IngredientDto Ingredient { get; set; }
-        public RecipeDto Recipe { get; set; }
+        public MeasurementType MeasurementType { get; set; }
+        public Ingredient Ingredient { get; set; }
+        public Recipe Recipe { get; set; }
     }
 }

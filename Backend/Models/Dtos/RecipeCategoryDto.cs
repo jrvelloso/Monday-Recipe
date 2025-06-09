@@ -1,10 +1,13 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using Models.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class RecipeCategoryDto : BaseModel
+    [NotMapped]
+    public class RecipeCategoryDto : BaseModelDto
     {
         public int CategoryId { get; set; }
-        public CategoryDto Category { get; set; }
+        public Category Category { get; set; }
     }
 }

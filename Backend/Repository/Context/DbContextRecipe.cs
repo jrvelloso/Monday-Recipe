@@ -27,6 +27,24 @@ namespace Repository.Context
             // There's a chance for you to need to define some FK, PK , essas cenas de DB
             // If so, ask for help at "" INTERNET "" (if you know what I mean)
 
+            modelBuilder.Entity<Comment>()
+            .HasOne(c => c.User)
+            .WithMany()
+            .HasForeignKey(c => c.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Rating>()
+            .HasOne(c => c.User)
+            .WithMany()
+            .HasForeignKey(c => c.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Favorite>()
+            .HasOne(c => c.User)
+            .WithMany()
+            .HasForeignKey(c => c.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
             //InitialLoadData.Seed(modelBuilder);
 
             base.OnModelCreating(modelBuilder);

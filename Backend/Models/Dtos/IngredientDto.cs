@@ -1,8 +1,10 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class IngredientDto : BaseModel
+    [NotMapped]
+    public class IngredientDto : BaseModelDto
     {
         public string Name { get; set; }
     }

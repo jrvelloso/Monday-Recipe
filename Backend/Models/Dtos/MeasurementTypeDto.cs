@@ -1,8 +1,10 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class MeasurementTypeDto : BaseModel
+    [NotMapped]
+    public class MeasurementTypeDto : BaseModelDto
     {
         public string Name { get; set; }
     }

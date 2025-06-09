@@ -22,7 +22,7 @@ namespace Service.Implementation
         {
             // Verificar se o email já está registrado
             User existingUser = await _userRepository.GetByEmail(userDto.Email);
-            if (existingUser.Email != null)
+            if (existingUser != null)
             {
                 throw new InvalidOperationException("Email já está em uso.");
             }
