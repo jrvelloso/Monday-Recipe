@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/services/user.service';
+import { AuthService } from 'src/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent {
   submitted = false;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService, private router: Router) {
     this.loginFormReceita = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -34,6 +36,12 @@ export class LoginComponent {
       next: (res: any) => {
         // Handle successful login, e.g., redirect or store token
         console.log('Login successful', res);
+
+        if (res && res.user) {
+          this.authService.login(res.user);
+          // Redirect to home or other page after login
+          this.router.navigate(['/home']);
+        }
       },
       error: (err: any) => {
         this.errorMessage = 'Invalid email or password';

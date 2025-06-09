@@ -1,0 +1,17 @@
+<div class="admin-area">
+  <h2>Área de Admin - Gestão de Receitas</h2>
+  <div *ngIf="pendingRecipes.length > 0; else noPending">
+    <ul>
+      <li *ngFor="let recipe of pendingRecipes">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+        <button (click)="updateRecipeStatus(recipe, 'Approved')">Aprovar</button>
+        <button (click)="updateRecipeStatus(recipe, 'Rejected')">Rejeitar</button>
+      </li>
+    </ul>
+  </div>
+  <ng-template #noPending>
+    <p>Não há receitas pendentes.</p>
+  </ng-template>
+  <!-- TODO: Add UI for CRUD of categories, ingredients, difficulty, measurement types -->
+</div>

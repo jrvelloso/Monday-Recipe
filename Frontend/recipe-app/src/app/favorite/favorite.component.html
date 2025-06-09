@@ -1,0 +1,14 @@
+<div class="favorite-recipes">
+  <h2>Meus Favoritos</h2>
+  <div *ngIf="favoriteRecipes.length > 0; else noFavorites">
+    <ul>
+      <li *ngFor="let recipe of favoriteRecipes">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+      </li>
+    </ul>
+  </div>
+  <ng-template #noFavorites>
+    <p>Você não tem receitas favoritas.</p>
+  </ng-template>
+</div>

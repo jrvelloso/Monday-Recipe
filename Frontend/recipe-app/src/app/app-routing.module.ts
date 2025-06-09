@@ -15,6 +15,8 @@ import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.c
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { AuthComponent } from './auth/auth.component';
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
+import { AdminAreaComponent } from './admin-area/admin-area.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -33,6 +35,8 @@ const routes: Routes = [
    { path: 'auth', component: AuthComponent },
    { path: 'login', component: LoginComponent },
    { path: 'register', component: RegisterComponent },
+   { path: 'meu-perfil', component: MeuPerfilComponent },
+   { path: 'admin', component: AdminAreaComponent },
 ];
 
 @NgModule({
