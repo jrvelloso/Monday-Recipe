@@ -10,9 +10,19 @@ export class AuthService {
   public currentUser: Observable<IUser | null>;
 
   constructor() {
-    const storedUser = localStorage.getItem('currentUser');
-    this.currentUserSubject = new BehaviorSubject<IUser | null>(storedUser ? JSON.parse(storedUser) : null);
+    let parsedUser: IUser | null = null;
+    try {
+      const storedUser = localStorage.getItem('currentUser');
+      parsedUser = storedUser ? JSON.parse(storedUser) : null;
+    }
+    catch (error) {
+      console.error('Erro ao fazer parse do usuário no localStorage:', error);
+      parsedUser = null;
+    }
+
+    this.currentUserSubject = new BehaviorSubject<IUser | null>(parsedUser);
     this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   public get currentUserValue(): IUser | null {

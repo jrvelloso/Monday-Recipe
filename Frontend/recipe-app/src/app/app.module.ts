@@ -23,6 +23,9 @@ import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.c
 import { RegisterComponent } from './register/register.component';
 import { AuthComponent } from './auth/auth.component';
 
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
+import { AdminAreaComponent } from './admin-area/admin-area.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,9 @@ import { AuthComponent } from './auth/auth.component';
       LoginComponent,
       RegisterComponent,
       HeaderComponent,
-      AuthComponent
+      AuthComponent,
+      MeuPerfilComponent,
+      AdminAreaComponent
    ],
   imports: [
     BrowserModule,

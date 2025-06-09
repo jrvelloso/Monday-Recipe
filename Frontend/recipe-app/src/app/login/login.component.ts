@@ -37,8 +37,9 @@ export class LoginComponent {
         // Handle successful login, e.g., redirect or store token
         console.log('Login successful', res);
 
-        if (res && res.user) {
-          this.authService.login(res.user);
+        const user = res.user ? res.user : res;
+        if (user) {
+          this.authService.login(user);
           // Redirect to home or other page after login
           this.router.navigate(['/home']);
         }
