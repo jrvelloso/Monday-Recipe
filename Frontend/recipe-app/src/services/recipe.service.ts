@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IRecipe } from 'src/interfaces/irecipe';
 
@@ -16,7 +16,7 @@ export class RecipeService {
   }
 
   getById(id: number): Observable<IRecipe> {
-    return this.http.get<IRecipe>(`${this.apiUrl}/${id}`);
+    return this.http.get<IRecipe>(`${this.apiUrl}/GetById?id=${id}`);
   }
 
   create(recipe: IRecipe): Observable<IRecipe> {

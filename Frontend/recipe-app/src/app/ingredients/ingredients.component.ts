@@ -1,6 +1,6 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IIngredients } from 'src/interfaces/iingredients';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IngredientsService } from 'src/services/ingredients.service';
 
 
@@ -11,6 +11,8 @@ import { IngredientsService } from 'src/services/ingredients.service';
   styleUrls: ['./ingredients.component.css']
 })
 export class IngredientsComponent implements OnInit {
+
+    @Input() recipeId: number | null = null;
 
    Form!: FormGroup;
    // categories: any[] = []; // Define your categories array

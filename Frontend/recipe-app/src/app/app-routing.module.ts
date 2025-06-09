@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminAreaComponent } from './admin-area/admin-area.component';
+import { AuthComponent } from './auth/auth.component';
 import { CategoryComponent } from './category/category.component';
 import { CommentComponent } from './comment/comment.component';
 import { DifficultyComponent } from './difficulty/difficulty.component';
@@ -8,15 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { LoginComponent } from './login/login.component';
 import { MeasurementTypeComponent } from './measurement-type/measurement-type.component';
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 import { RatingComponent } from './rating/rating.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeCategoryComponent } from './recipecategory/recipecategory.component';
 import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-import { AuthComponent } from './auth/auth.component';
-import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
-import { AdminAreaComponent } from './admin-area/admin-area.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
    { path: 'measurementtype', component: MeasurementTypeComponent },
    { path: 'recipecategory', component: RecipeCategoryComponent },
    { path: 'recipeingredient', component: RecipeIngredientComponent },
-   { path: 'recipe/:id', component: RecipeComponent },
+   { path: 'recipe', component: RecipeComponent },
+   { path: 'recipe-detail/:id', component: RecipeDetailComponent },
    { path: 'user', component: UserComponent },
    { path: 'auth', component: AuthComponent },
    { path: 'login', component: LoginComponent },

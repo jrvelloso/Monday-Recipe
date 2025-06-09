@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IComment } from 'src/interfaces/icomment';
 import { CommentService } from 'src/services/comment.service';
 
@@ -25,6 +25,7 @@ export class CommentComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    console.log('CommentComponent initialized with recipeId:', this.recipeId);
     // TODO: Replace with actual auth check
     this.isLoggedIn = !!localStorage.getItem('userToken');
 

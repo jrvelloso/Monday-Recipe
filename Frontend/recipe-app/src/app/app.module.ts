@@ -1,11 +1,12 @@
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthComponent } from './auth/auth.component';
 import { CategoryComponent } from './category/category.component';
 import { CommentComponent } from './comment/comment.component';
 import { DifficultyComponent } from './difficulty/difficulty.component';
@@ -21,10 +22,10 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeCategoryComponent } from './recipecategory/recipecategory.component';
 import { RecipeIngredientComponent } from './recipeingredient/recipeingredient.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthComponent } from './auth/auth.component';
 
-import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
+import { Interceptor } from 'src/interceptor/interceptor';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { AdminAreaComponent } from './admin-area/admin-area.component';
       HeaderComponent,
       AuthComponent,
       MeuPerfilComponent,
-      AdminAreaComponent
+      AdminAreaComponent,
    ],
   imports: [
     BrowserModule,
@@ -57,6 +58,7 @@ import { AdminAreaComponent } from './admin-area/admin-area.component';
     FormsModule,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: APP_BASE_HREF, useValue: '/' },
   ],

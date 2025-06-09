@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IRecipe } from 'src/interfaces/irecipe';
 import { RecipeService } from 'src/services/recipe.service';
 
@@ -14,7 +14,7 @@ export class RecipeComponent implements OnInit {
   form!: FormGroup;
   recipes!: IRecipe[];
   selected: IRecipe | null = null;
-recipe: any;
+  recipe: any;
 
   constructor(private service: RecipeService, private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -29,11 +29,13 @@ recipe: any;
   }
 
   ngOnInit(): void {
+    console.log('RecipeComponent initialized');
     this.fetch();
   }
 
   fetch(): void {
     this.service.getAll().subscribe((data: IRecipe[]) => {
+      console.log('Fetched recipes:', data);
       this.recipes = data;
     });
   }
