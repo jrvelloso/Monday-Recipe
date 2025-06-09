@@ -1,6 +1,5 @@
-<div class="container">
-  <h1 class="m-5">Categories</h1>
-
+&nbsp;
+&nbsp;
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Nome:</label>
@@ -38,11 +37,10 @@
 
   <ul class="category-list">
     <li *ngFor="let category of categories" [class.selected]="category.id === selectedCategoryId">
-      <span>{{ category.name }}</span>
+      <span><b>{{ category.name }}</b></span>
       <div class="right-button">
       <button (click)="selectCategory(category)">Editar</button>
       <button (click)="deleteCategory(category.id)">Deletar</button>
       </div>
     </li>
   </ul>
-</div>

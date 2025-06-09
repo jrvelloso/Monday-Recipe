@@ -1,5 +1,4 @@
-<div class="container">
-  <h1>Ingredientes</h1>
+
 &nbsp;
 &nbsp;
 
@@ -40,11 +39,11 @@
 
   <ul class="item-list">
     <li *ngFor="let item of ingredients" [class.selected]="item === selected">
-      <span>{{ item.name }}</span>
+      <span><b>{{ item.name }}</b></span>
       <div class="right-button">
       <button (click)="select(item)">Editar</button>
       <button (click)="delete(item.id)">Deletar</button>
       </div>
     </li>
   </ul>
-</div>
+

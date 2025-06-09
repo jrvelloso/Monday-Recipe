@@ -2,20 +2,28 @@
   padding: 20px;
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .admin-area h2 {
   color: #333;
   margin-bottom: 20px;
+  flex-basis: 100%;
 }
 
 .admin-area section {
   background-color: #ffffff;
   border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 0;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  flex: 1 1 300px;
+  max-width: 400px;
 }
 
 .admin-area section h3 {

@@ -60,7 +60,7 @@ h1 {
   cursor: pointer;
   font-weight: bold;
   color: white;
-  background-color: #007bff;
+  background-color: #2a4d14;
   transition: background-color 0.3s ease;
 }
 
@@ -70,7 +70,7 @@ h1 {
 }
 
 .form-buttons button:hover:not([disabled]) {
-  background-color: #0056b3;
+  background-color: #40751f;
 }
 
 .category-list {
@@ -104,7 +104,7 @@ h1 {
   cursor: pointer;
   font-weight: bold;
   color: white;
-  background-color: #28a745;
+  background-color: #007bff;
   transition: background-color 0.3s ease;
 }
 
