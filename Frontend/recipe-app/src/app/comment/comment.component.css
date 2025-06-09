@@ -1,58 +1,95 @@
-.comment-container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.comments-container {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
-form label {
-  display: block;
-  margin-top: 10px;
+.comments-container h3 {
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
-form input[type="number"],
-form textarea {
+.new-comment {
+  margin-bottom: 20px;
+}
+
+.new-comment textarea {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  box-sizing: border-box;
-  border-radius: 4px;
+  min-height: 80px;
+  padding: 10px;
+  font-size: 14px;
   border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
 }
 
-form button {
-  margin-top: 15px;
-  margin-right: 10px;
+.new-comment button {
+  margin-top: 8px;
   padding: 8px 16px;
-  border: none;
   background-color: #2a4d14;
   color: white;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-form button:disabled {
-  background-color: #999;
+.new-comment button:disabled {
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
 .comment-list {
-  margin-top: 20px;
-}
-
-.comment-list ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .comment-list li {
-  padding: 8px;
   border-bottom: 1px solid #ddd;
-  cursor: pointer;
+  padding: 15px 0;
 }
 
-.comment-list li:hover {
-  background-color: #f0f0f0;
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.username {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #2a4d14;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #999;
+}
+
+.comment-text {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.comment-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #666;
+}
+
+.comment-actions button:hover {
+  color: #2a4d14;
 }

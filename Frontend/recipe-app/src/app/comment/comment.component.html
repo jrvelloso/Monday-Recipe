@@ -1,29 +1,22 @@
-<div class="comment-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label for="comments">Comments:</label>
-    <textarea id="comments" formControlName="comments"></textarea>
-
-    <label for="userId">User ID:</label>
-    <input id="userId" type="number" formControlName="userId" />
-
-    <label for="recipeId">Recipe ID:</label>
-    <input id="recipeId" type="number" formControlName="recipeId" />
-
-    <label>
-      <input type="checkbox" formControlName="isActive" />
-      Active
-    </label>
-
-    <button type="submit" [disabled]="form.invalid">Submit</button>
-    <button type="button" (click)="clearForm()">Clear</button>
-  </form>
-
-  <div class="comment-list">
-    <h3>Comments</h3>
-    <ul>
-      <li *ngFor="let comment of comments" (click)="select(comment)">
-        {{ comment.comments }} (User: {{ comment.userId }}, Recipe: {{ comment.recipeId }})
-      </li>
-    </ul>
+<div class="comments-container">
+  <h3>Comentários</h3>
+  <div *ngIf="isLoggedIn" class="new-comment">
+    <textarea [(ngModel)]="newComment" placeholder="Adicione um comentário..."></textarea>
+    <button (click)="submitComment()" [disabled]="!newComment.trim()">Enviar</button>
   </div>
+  <ul class="comment-list">
+    <li *ngFor="let comment of comments">
+      <div class="comment-header">
+        <img class="avatar" [src]="comment.user?.avatarUrl || 'assets/images/default-avatar.png'" alt="User avatar" />
+        <span class="username">{{ comment.user?.username }}</span>
+        <span class="comment-date">{{ comment.createdAt | date:'short' }}</span>
+      </div>
+      <p class="comment-text">{{ comment.comments }}</p>
+      <div class="comment-actions">
+        <button>👍</button>
+        <button>👎</button>
+        <button>Responder</button>
+      </div>
+    </li>
+  </ul>
 </div>
