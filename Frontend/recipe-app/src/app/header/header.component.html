@@ -5,8 +5,7 @@
   </div>
   <div class="nav">
     <select (change)="onSelectChange($event)">
-      <option value="">Select</option>
-      <option value="recipe">Receitas</option>
+      <option value="home">Receitas</option>
       <option value="category">Categoria</option>
       <option value="ingredients">Ingredientes</option>
       <option value="comment">Comentários</option>
@@ -15,17 +14,13 @@
     <input type="text" placeholder="Pesquise por Receitas..." (input)="onSearchChange($any($event.target).value)" />
 
     <ng-container *ngIf="currentUser; else showLogin">
-      <button class="login-btn user-menu" (click)="toggleDropdown()">
-        Olá {{ currentUser.name }}!
-      </button>
-      <div class="dropdown" *ngIf="showDropdown">
-        <ul>
-          <li (click)="navigateTo('/user')">Meu Perfil</li>
-          <li (click)="navigateTo('/favorite')">Meus Favoritos</li>
-          <li *ngIf="currentUser.isAdmin" (click)="navigateTo('/admin')">Área de Admin</li>
-          <li (click)="logout()">Sair</li>
-        </ul>
-      </div>
+      <select class="login-btn user-menu" (change)="onUserMenuChange($event)">
+        <option value="/home">Olá {{ currentUser.name }}!</option>
+        <option value="/user">Meu Perfil</option>
+        <option value="/favorite">Meus Favoritos</option>
+        <option *ngIf="currentUser.isAdmin" value="/admin">Área de Admin</option>
+        <option value="logout">Sair</option>
+      </select>
     </ng-container>
     <ng-template #showLogin>
       <button class="login-btn" (click)="onLoginClick()">Login/Registo</button>

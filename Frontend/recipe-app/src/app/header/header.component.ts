@@ -52,4 +52,13 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/']);
   }
+
+  onUserMenuChange(event: Event) {
+    const value = (event.target as HTMLSelectElement).value;
+    if (value === 'logout') {
+      this.logout();
+    } else {
+      this.navigateTo(value);
+    }
+  }
 }
