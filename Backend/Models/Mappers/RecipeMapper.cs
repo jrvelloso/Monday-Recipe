@@ -22,6 +22,7 @@ namespace Models.Mappers
                 User = entity.User,
                 UserId = entity.UserId,
                 IsAtive = entity.IsAtive,
+                Status = entity.Status,
             };
         }
         public static IEnumerable<RecipeDto> ToDtos(IEnumerable<Recipe> entities)
@@ -48,6 +49,7 @@ namespace Models.Mappers
                 User = entityDto.User,
                 UserId = entityDto.UserId,
                 IsAtive = entityDto.IsAtive,
+                Status = entityDto.Status,
             };
         }
         public static Recipe ToEntityUpdate(RecipeDto entityDto, Recipe entity)
@@ -65,6 +67,7 @@ namespace Models.Mappers
             entity.User = entityDto.User;
             entity.UserId = entityDto.UserId;
             entity.IsAtive = entityDto.IsAtive;
+            entity.Status = entityDto.Status;
             return entity;
         }
     }

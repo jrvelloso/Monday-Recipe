@@ -6,6 +6,6 @@ namespace Models
     [NotMapped]
     public class MeasurementTypeDto : BaseModelDto
     {
-        public string Name { get; set; }
+        public string Measurement { get; set; }
     }
 }

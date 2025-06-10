@@ -15,6 +15,7 @@ namespace Models.Mappers
                 Comments = entity.Comments,
                 RecipeId = entity.RecipeId,
                 UserId = entity.UserId,
+                UserName = entity.User.Name,
                 IsAtive = entity.IsAtive,
             };
         }
@@ -29,9 +30,9 @@ namespace Models.Mappers
         {
             if (entityDto == null)
                 return null;
-
             return new Comment
             {
+
                 Comments = entityDto.Comments,
                 RecipeId = entityDto.RecipeId,
                 UserId = entityDto.UserId,

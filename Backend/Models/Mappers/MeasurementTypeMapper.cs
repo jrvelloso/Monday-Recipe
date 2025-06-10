@@ -12,7 +12,7 @@ namespace Models.Mappers
             return new MeasurementTypeDto
             {
                 Id = entity.Id,
-                Name = entity.Measurement,
+                Measurement = entity.Measurement,
                 IsAtive = entity.IsAtive,
             };
         }
@@ -30,7 +30,7 @@ namespace Models.Mappers
 
             return new MeasurementType
             {
-                Measurement = entityDto.Name,
+                Measurement = entityDto.Measurement,
                 IsAtive = entityDto.IsAtive,
             };
         }
@@ -40,7 +40,7 @@ namespace Models.Mappers
             if (entityDto == null)
                 return null;
 
-            entity.Measurement = entityDto.Name;
+            entity.Measurement = entityDto.Measurement;
             entity.IsAtive = entityDto.IsAtive;
             return entity;
         }

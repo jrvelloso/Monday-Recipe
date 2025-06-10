@@ -16,6 +16,7 @@ namespace Models
         public Category Category { get; set; }
         public Difficulty Difficulty { get; set; }
         public User User { get; set; }
+        public string Status { get; set; }
 
     }
 }

@@ -5,6 +5,7 @@ import { IUser } from './iuser';
 export interface IRecipe {
   id: number;
   isActive: boolean;
+  status: string;
   title: string;
   description: string;
   preparationTime: string;

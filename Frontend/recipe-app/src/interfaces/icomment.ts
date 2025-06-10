@@ -4,9 +4,7 @@ export interface IComment {
   userId: number;
   recipeId: number;
   isActive: boolean;
-  user?: {
-    username: string;
-    avatarUrl?: string;
-  };
+  username: string;
+  avatarUrl: string;
   createdAt?: string;
 }

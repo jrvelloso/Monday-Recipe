@@ -65,12 +65,26 @@ namespace Service.Implementation
         {
             try
             {
-                var entity = await _repository.GetByIdAsync(entityId);
+                var entity = await _repository.GetByIdAll(entityId);
                 return CommentMapper.ToDto(entity);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Comentário não encontrado.");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<CommentDto>> GetByRecipe(int recipeId)
+        {
+            try
+            {
+                var entity = await _repository.GetByRecipeAsync(recipeId);
+                return CommentMapper.ToDtos(entity);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Comentários não encontrados.");
                 throw;
             }
         }

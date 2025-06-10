@@ -1,9 +1,28 @@
 <div class="meu-perfil">
   <h2>Meu Perfil</h2>
-  <div *ngIf="currentUser">
-    <p><strong>Nome:</strong> {{ currentUser?.name }}</p>
-    <p><strong>Email:</strong> {{ currentUser?.email }}</p>
-    <p><strong>Ativo:</strong> {{ currentUser?.isActive ? 'Sim' : 'Não'  }}</p>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" *ngIf="currentUser">
+    <div>
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="currentUser.name" required />
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="currentUser.email" required />
+    </div>
+    <div>
+      <label for="isActive">Ativo:</label>
+      <select id="isActive" name="isActive" [(ngModel)]="currentUser.isActive" required>
+        <option [ngValue]="true">Sim</option>
+        <option [ngValue]="false">Não</option>
+      </select>
+    </div>
+    <button type="submit">Atualizar</button>
+  </form>
+  <div *ngIf="updateSuccess" class="success-message">
+    Dados atualizados com sucesso!
+  </div>
+  <div *ngIf="updateError" class="error-message">
+    {{ updateError }}
   </div>
   <div *ngIf="!currentUser">
     <p>Usuário não está logado.</p>

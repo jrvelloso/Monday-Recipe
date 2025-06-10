@@ -12,12 +12,12 @@ export class MeasurementTypeComponent implements OnInit {
 
   Form!: FormGroup;
   selected: IMeasurementType | null = null;
-  measurementTypes!: IMeasurementType[];
+  measurementTypes: IMeasurementType[] = [];
 
   constructor(private service: MeasurementTypeService, private fb: FormBuilder) {
     this.Form = this.fb.group({
       measurement: ['', Validators.required],
-      isActive: [false]
+      isActive: [true]
     });
   }
 
@@ -34,7 +34,7 @@ export class MeasurementTypeComponent implements OnInit {
   select(item: IMeasurementType): void {
     this.selected = { ...item };
     this.Form.patchValue({
-      name: item.measurement,
+      nmeasurement: item.measurement,
       isActive: item.isActive
     });
   }

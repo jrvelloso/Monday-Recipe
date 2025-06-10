@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { IComment } from 'src/interfaces/icomment';
 import { CommentService } from 'src/services/comment.service';
 import { AuthService } from 'src/services/auth.service';
+import { IUser } from 'src/interfaces/iuser';
 
 @Component({
   selector: 'app-comment',
@@ -32,6 +33,7 @@ export class CommentComponent implements OnInit, OnChanges {
     if (this.recipeId !== null) {
       this.service.getByRecipeId(this.recipeId).subscribe(data => {
         this.comments = data;
+        console.log("teste de comentario", data);
       });
     }
   }
@@ -48,6 +50,7 @@ export class CommentComponent implements OnInit, OnChanges {
     const comment: Partial<IComment> = {
       comments: this.newComment,
       userId: userId,
+      username: this.authService.currentUserValue?.name,
       recipeId: this.recipeId!,
       isActive: true
     };
@@ -56,6 +59,7 @@ export class CommentComponent implements OnInit, OnChanges {
     const apiComment = {
       comment: comment.comments,
       userId: comment.userId,
+      userName: comment.username,
       recipeId: comment.recipeId,
       isActive: comment.isActive
     };

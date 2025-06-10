@@ -7,16 +7,15 @@
   <ul class="comment-list">
     <li *ngFor="let comment of comments">
       <div class="comment-header">
-        <img class="avatar" [src]="comment.user?.avatarUrl || 'assets/images/default-avatar.png'" alt="User avatar" />
-        <span class="username">{{ comment.user?.username }}</span>
-        <span class="comment-date">{{ comment.createdAt | date:'short' }}</span>
+        <img class="avatar" [src]="comment.avatarUrl || 'assets/images/default-avatar.png'" alt="User avatar" />
+        <span class="username">{{ comment.username }}</span>
       </div>
       <p class="comment-text">{{ comment.comments }}</p>
-      <div class="comment-actions">
+      <!-- <div class="comment-actions">
         <button>👍</button>
         <button>👎</button>
         <button>Responder</button>
-      </div>
+      </div> -->
     </li>
   </ul>
 </div>

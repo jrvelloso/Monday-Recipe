@@ -16,7 +16,7 @@ export class CommentService {
   }
 
   getByRecipeId(recipeId: number): Observable<IComment[]> {
-    return this.http.get<IComment[]>(`${this.apiUrl}/ByRecipe/${recipeId}`);
+    return this.http.get<IComment[]>(`${this.apiUrl}/GetByRecipe?id=${recipeId}`);
   }
 
   create(comment: IComment): Observable<IComment> {
