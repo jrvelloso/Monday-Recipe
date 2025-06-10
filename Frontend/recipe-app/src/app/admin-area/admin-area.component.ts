@@ -167,7 +167,7 @@ export class AdminAreaComponent implements OnInit {
   addMeasurementType() {
     if (!this.newMeasurementTypeName.trim()) return;
     this.measurementTypeService.create({
-      name: this.newMeasurementTypeName,
+      measurement: this.newMeasurementTypeName,
       id: 0,
       isActive: true
     }).subscribe(() => {
@@ -177,9 +177,9 @@ export class AdminAreaComponent implements OnInit {
   }
 
   editMeasurementType(measurementType: any) {
-    const newName = prompt('Editar Tipo de Medida', measurementType.name);
+    const newName = prompt('Editar Tipo de Medida', measurementType.measurement);
     if (newName && newName.trim()) {
-      this.measurementTypeService.update(measurementType.id, { ...measurementType, name: newName }).subscribe(() => {
+      this.measurementTypeService.update(measurementType.id, { ...measurementType, measurement: newName }).subscribe(() => {
         this.loadMeasurementTypes();
       });
     }

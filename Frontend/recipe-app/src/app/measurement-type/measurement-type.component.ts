@@ -16,7 +16,7 @@ export class MeasurementTypeComponent implements OnInit {
 
   constructor(private service: MeasurementTypeService, private fb: FormBuilder) {
     this.Form = this.fb.group({
-      name: ['', Validators.required],
+      measurement: ['', Validators.required],
       isActive: [false]
     });
   }
@@ -34,7 +34,7 @@ export class MeasurementTypeComponent implements OnInit {
   select(item: IMeasurementType): void {
     this.selected = { ...item };
     this.Form.patchValue({
-      name: item.name,
+      name: item.measurement,
       isActive: item.isActive
     });
   }
@@ -64,7 +64,7 @@ export class MeasurementTypeComponent implements OnInit {
   onSubmit() {
     if (this.Form.valid) {
       if (this.selected) {
-        this.selected.name = this.Form.value.name;
+        this.selected.measurement = this.Form.value.measurement;
         this.selected.isActive = this.Form.value.isActive;
         this.update();
       } else {

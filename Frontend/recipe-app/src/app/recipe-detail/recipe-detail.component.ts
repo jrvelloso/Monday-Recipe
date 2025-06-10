@@ -1,7 +1,12 @@
+import { DifficultyService } from './../../services/difficulty.service';
+import { UserService } from './../../services/user.service';
+import { RecipeIngredientService } from './../../services/recipeingredient.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IRecipe } from 'src/interfaces/irecipe';
+import { IRecipeIngredient } from 'src/interfaces/irecipeingredient';
 import { RecipeService } from 'src/services/recipe.service';
+import { CategoryService } from 'src/services/category.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -13,10 +18,16 @@ export class RecipeDetailComponent implements OnInit {
 
   recipeId!: number;
   recipe!: IRecipe;
+  ingredients: IRecipeIngredient[] = [];
+
 
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
+    private recipeIngredientService: RecipeIngredientService,
+    private userService: UserService,
+    private categoryService: CategoryService,
+    private difficultyService: DifficultyService,
   ) { }
 
 
@@ -33,7 +44,19 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.getById(this.recipeId).subscribe((data: IRecipe) => {
       console.log('Fetched recipesddddd:', data);
       this.recipe = data;
+      this.recipeIngredientService.getByRecipeId(this.recipeId).subscribe(data => {
+        this.ingredients = data;
+        console.log('Fetched ingridients:', data);
+      });
+      this.userService.getById(this.recipe.userId).subscribe(data => {
+        this.recipe.user = data;
+      });
+      this.categoryService.getCategoryById(this.recipe.categoryId).subscribe(data => {
+        this.recipe.category = data;
+      });
+      this.difficultyService.getById(this.recipe.difficultyId).subscribe(data => {
+        this.recipe.difficulty = data;
+      });
     });
   }
-
 }

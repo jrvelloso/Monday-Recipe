@@ -1,9 +1,9 @@
-<div class="ingredients-container" *ngIf="ingredients.length > 0">
+<div class="ingredients-container">
   <h2>Ingredientes</h2>
   <ul class="ingredients-list">
     <li *ngFor="let ingredient of ingredients">
       <span class="ingredient-icon">🌿</span>
-      {{ ingredient.amount }} {{ ingredient.measurementType?.name || '' }} {{ ingredient.ingredient?.name }}
+      {{ ingredient.amount }} {{ ingredient.measurementType?.measurement }} {{ ingredient.ingredient?.name }}
     </li>
   </ul>
 </div>

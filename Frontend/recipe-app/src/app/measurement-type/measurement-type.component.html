@@ -38,7 +38,7 @@
 
   <ul class="item-list">
     <li *ngFor="let item of measurementTypes" [class.selected]="item === selected">
-      <span><b>{{ item.name }}</b></span>
+      <span><b>{{ item.measurement }}</b></span>
       <div class="right-button">
       <button (click)="select(item)">Editar</button>
       <button (click)="delete(item.id)">Deletar</button>

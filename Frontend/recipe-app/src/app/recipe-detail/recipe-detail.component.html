@@ -1,2 +1,32 @@
-<span>{{ recipe.title }}</span>
-<span>{{ recipe.description }}</span>
+<div class="recipe-container">
+  <nav class="breadcrumb">
+    <a routerLink="/home">Home</a> >
+    <a routerLink="/category">{{ recipe.category.name }}</a> >
+    <span>{{ recipe.title }}</span>
+  </nav>
+
+  <h1 class="recipe-title">{{ recipe.title }}</h1>
+  <p class="recipe-author">Receita de: <a class="author-link" href="#">{{ recipe.user.name }}</a></p>
+
+   <img class="recipe-image" src="assets/images/receitasdefault.jpg" alt="{{ recipe.title }}" />
+
+  <div class="recipe-content">
+    <div class="ingredients-container">
+      <h2>Ingredientes</h2>
+      <ul class="ingredients-list" *ngIf="ingredients?.length">
+        <li *ngFor="let ingredient of ingredients">
+          <span class="ingredient-icon">🌿</span>
+          {{ ingredient.amount }} {{ ingredient.measurementType?.measurement }} {{ ingredient.ingredient?.name }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="preparation">
+      <h2>Preparação</h2>
+      <p>{{ recipe.description }}</p>
+      <p><strong>Tempo de preparação:</strong> {{ recipe.preparationTime }}</p>
+    </div>
+  </div>
+
+  <app-comment [recipeId]="recipe.id"></app-comment> 
+</div>

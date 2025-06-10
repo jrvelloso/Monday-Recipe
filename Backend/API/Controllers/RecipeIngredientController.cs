@@ -51,6 +51,25 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("GetByRecipe")]
+        public async Task<ActionResult<RecipeIngredientDto>> GetByRecipe(int id)
+        {
+            try
+            {
+                var item = await _service.GetByRecipe(id);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving RecipeIngredientDto with ID {{Id}}", id);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<RecipeIngredientDto>> Create(RecipeIngredientDto item, CancellationToken cancellationToken)
         {

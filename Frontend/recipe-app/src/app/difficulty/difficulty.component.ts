@@ -17,7 +17,7 @@ export class DifficultyComponent implements OnInit {
   constructor(private service: DifficultyService, private fb: FormBuilder) {
     this.Form = this.fb.group({
       name: ['', Validators.required],
-      isActive: [false]
+      isActive: [true]
     });
   }
 

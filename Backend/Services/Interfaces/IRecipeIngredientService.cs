@@ -8,6 +8,7 @@ namespace Service.Interfaces
         Task<bool> DeleteAsync(int id);
         Task<IEnumerable<RecipeIngredientDto>> GetAll();
         Task<RecipeIngredientDto> GetById(int recipeIngredientId);
+        Task<IEnumerable<RecipeIngredientDto>> GetByRecipe(int recipeId);
         Task<RecipeIngredientDto> Update(RecipeIngredientDto recipeIngredient);
     }
 }

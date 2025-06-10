@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IComment } from 'src/interfaces/icomment';
 import { CommentService } from 'src/services/comment.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-comment',
@@ -14,7 +15,7 @@ export class CommentComponent implements OnInit, OnChanges {
   isLoggedIn: boolean = false;
   newComment: string = '';
 
-  constructor(private service: CommentService) {}
+  constructor(private service: CommentService, private authService: AuthService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['recipeId'] && this.recipeId !== null) {
@@ -26,8 +27,7 @@ export class CommentComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     console.log('CommentComponent initialized with recipeId:', this.recipeId);
-    // TODO: Replace with actual auth check
-    this.isLoggedIn = !!localStorage.getItem('userToken');
+    this.isLoggedIn = this.authService.currentUserValue !== null;
 
     if (this.recipeId !== null) {
       this.service.getByRecipeId(this.recipeId).subscribe(data => {
@@ -39,8 +39,11 @@ export class CommentComponent implements OnInit, OnChanges {
   submitComment(): void {
     if (!this.newComment.trim()) return;
 
-    // TODO: Replace with actual user id from auth
-    const userId = 1;
+    const userId = this.authService.currentUserValue?.id;
+    if (!userId) {
+      console.error('User not logged in. Cannot submit comment.');
+      return;
+    }
 
     const comment: Partial<IComment> = {
       comments: this.newComment,
@@ -49,10 +52,19 @@ export class CommentComponent implements OnInit, OnChanges {
       isActive: true
     };
 
-    this.service.create(comment as IComment).subscribe(() => {
+    // Transform comment object to match API expected property names
+    const apiComment = {
+      comment: comment.comments,
+      userId: comment.userId,
+      recipeId: comment.recipeId,
+      isActive: comment.isActive
+    };
+
+    this.service.create(apiComment as any).subscribe(() => {
       this.newComment = '';
       this.service.getByRecipeId(this.recipeId!).subscribe(data => {
         this.comments = data;
+        console.log(data);
       });
     });
   }

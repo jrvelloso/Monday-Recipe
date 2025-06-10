@@ -24,7 +24,7 @@ export class CategoryComponent implements OnInit {
     ) {
     this.categoryForm = this.fb.group({
       name: ['', Validators.required],
-      isActive: [false]
+      isActive: [true]
     });
    }
 

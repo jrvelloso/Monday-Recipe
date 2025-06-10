@@ -9,11 +9,13 @@ namespace Service.Implementation
 {
     public class RecipeIngredientService : IRecipeIngredientService
     {
+        private readonly IRecipeRepository _recipeRepository;
         private readonly IRecipeIngredientRepository _recipeIngredientRepository;
         private readonly ILogger<RecipeIngredientService> _logger;
-        public RecipeIngredientService(IRecipeIngredientRepository recipeIngredientRepository, ILogger<RecipeIngredientService> logger)
+        public RecipeIngredientService(IRecipeIngredientRepository recipeIngredientRepository, IRecipeRepository recipeRepository, ILogger<RecipeIngredientService> logger)
         {
             _recipeIngredientRepository = recipeIngredientRepository ?? throw new ArgumentNullException(nameof(recipeIngredientRepository));
+            _recipeRepository = recipeRepository ?? throw new ArgumentNullException(nameof(recipeRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         public async Task<RecipeIngredientDto> AddAsync(RecipeIngredientDto recipeIngredientDto)
@@ -68,6 +70,20 @@ namespace Service.Implementation
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ingrediente de receita não encontrado.");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<RecipeIngredientDto>> GetByRecipe(int recipeId)
+        {
+            try
+            {
+                var entity = await _recipeIngredientRepository.GetByRecipeAsync(recipeId);
+                return RecipeIngredientMapper.ToDtos(entity);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ingredientes de receita não encontrado.");
                 throw;
             }
         }

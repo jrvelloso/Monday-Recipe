@@ -1,5 +1,5 @@
 export interface IMeasurementType {
   id: number;
-  name: string;
+  measurement: string;
   isActive: boolean;
 }
