@@ -27,7 +27,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error retrieving all RecipeCategoryDtos");
+                _logger.LogError(ex, "Error2 retrieving all RecipeCategoryDtos");
                 return StatusCode(500, "Internal server error");
             }
         }
