@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RecipeService } from 'src/services/recipe.service';
+import { IRecipe } from 'src/interfaces/irecipe';
 
 @Component({
   selector: 'app-home',
@@ -8,59 +10,39 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   searchQuery: string = '';
+  recipes: IRecipe[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private recipeService: RecipeService
   ) { }
 
   ngOnInit() {
+    this.loadRecipes();
   }
 
+  loadRecipes(): void {
+    this.recipeService.getAll().subscribe({
+      next: (data: IRecipe[]) => {
+        this.recipes = data;
+      },
+      error: (error) => {
+        console.error('Error loading recipes:', error);
+      }
+    });
+  }
 
-
-
-
-  recipes = [
-    {
-      title: 'Mil-folhas de Bacalhau com Couve e Batata',
-      image: 'assets/images/bacalhau.jpg',
-      category: 'Peixe e Marisco',
-      author: 'Cátia Goarmon'
-    },
-    {
-      title: 'Doce com Frutos Vermelhos e Suspiros',
-      image: 'assets/images/frutos-vermelhos.jpg',
-      category: 'Sobremesas',
-      author: 'Cátia Goarmon'
-    },
-    {
-      title: 'Mekitsi',
-      image: 'assets/images/mekitsi.jpg',
-      category: 'Sobremesas',
-      author: 'Cátia Goarmon'
-    },
-    {
-      title: 'Tarte de Pêra Caramelizada',
-      image: 'assets/images/receitasdefault.jpg',
-      category: 'Sobremesas',
-      author: 'Cátia Goarmon'
-    }
-  ];
-
-
-
-
- get filteredRecipes() {
+  get filteredRecipes() {
     if (!this.searchQuery) {
       return this.recipes;
     }
     return this.recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(this.searchQuery) ||
-      recipe.category.toLowerCase().includes(this.searchQuery)
+      recipe.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      recipe.category.name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 
-
-
-
+  onRecipeClick(recipeId: number): void {
+    this.router.navigate(['/recipe-detail', recipeId]);
+  }
 }

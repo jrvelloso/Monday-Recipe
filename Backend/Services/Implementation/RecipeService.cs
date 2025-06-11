@@ -76,7 +76,7 @@ namespace Service.Implementation
         {
             try
             {
-                var entity = await _repository.GetAllAsync();
+                var entity = await _repository.GetAllIncluded();
                 return RecipeMapper.ToDtos(entity);
             }
             catch (Exception ex)

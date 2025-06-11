@@ -27,5 +27,14 @@ namespace Repository.Implementation
                                 .Where(r => r.Status == "Pending")
                                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Recipe>> GetAllIncluded()
+        {
+            return await _context.Set<Recipe>()
+                .Include(r => r.Category)
+                .Include(r => r.Difficulty)
+                .Include(r => r.User)
+                .ToListAsync();
+        }
     }
 }

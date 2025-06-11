@@ -23,7 +23,7 @@ export class IngredientsComponent implements OnInit {
     constructor(private Service: IngredientsService, private fb: FormBuilder) {
       this.Form = this.fb.group({
         name: ['', Validators.required],
-        isActive: [false]
+        isActive: [true]
       });
      }
 

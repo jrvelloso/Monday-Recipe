@@ -2,12 +2,12 @@
   <h2>Receitas</h2>
   <a href="#" class="view-all">Ver tudo ></a>
   <div class="recipes-grid">
-    <div class="recipe-card" *ngFor="let recipe of filteredRecipes" tabindex="0" role="button">
-      <div class="category-label">{{ recipe.category | uppercase }}</div>
-      <img [src]="recipe.image" [alt]="recipe.title" />
+    <div class="recipe-card" *ngFor="let recipe of filteredRecipes" tabindex="0" role="button" (click)="onRecipeClick(recipe.id)">
+      <div class="category-label">{{ recipe.category.name | uppercase }}</div>
+      <img src="assets/images/default-recipe.png" [alt]="recipe.title" />
       <div class="recipe-info">
         <h3>{{ recipe.title }}</h3>
-        <p>{{ recipe.author }}</p>
+        <p><b>Autor: {{ recipe.user?.name }}</b></p>
       </div>
     </div>
   </div>
