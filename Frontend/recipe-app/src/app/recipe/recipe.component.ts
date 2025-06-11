@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IRecipe } from 'src/interfaces/irecipe';
 import { RecipeService } from 'src/services/recipe.service';
-
+import { CategoryService } from 'src/services/category.service';
+import { DifficultyService } from 'src/services/difficulty.service';
+import { AuthService } from 'src/services/auth.service';
+import { ICategory } from 'src/interfaces/icategory';
+import { IDifficulty } from 'src/interfaces/idifficulty';
+import { IUser } from 'src/interfaces/iuser';
 
 @Component({
   selector: 'app-recipe',
@@ -14,9 +19,17 @@ export class RecipeComponent implements OnInit {
   form!: FormGroup;
   recipes!: IRecipe[];
   selected: IRecipe | null = null;
-  recipe: any;
+  categories: ICategory[] = [];
+  difficulties: IDifficulty[] = [];
+  currentUser: IUser | null = null;
 
-  constructor(private service: RecipeService, private fb: FormBuilder) {
+  constructor(
+    private service: RecipeService,
+    private fb: FormBuilder,
+    private categoryService: CategoryService,
+    private difficultyService: DifficultyService,
+    private authService: AuthService
+  ) {
     this.form = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -29,14 +42,46 @@ export class RecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('RecipeComponent initialized');
-    this.fetch();
+    this.authService.currentUser.subscribe(user => {
+      this.currentUser = user;
+      if (user) {
+        this.form.patchValue({ userId: user.id });
+      }
+      this.fetch();
+      this.loadCategories();
+      this.loadDifficulties();
+    });
+  }
+
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe({
+      next: (data: ICategory[]) => {
+        this.categories = data;
+      },
+      error: (error) => {
+        console.error('Error loading categories:', error);
+      }
+    });
+  }
+
+  loadDifficulties(): void {
+    this.difficultyService.getAll().subscribe({
+      next: (data: IDifficulty[]) => {
+        this.difficulties = data;
+      },
+      error: (error) => {
+        console.error('Error loading difficulties:', error);
+      }
+    });
   }
 
   fetch(): void {
     this.service.getAll().subscribe((data: IRecipe[]) => {
-      console.log('Fetched recipes:', data);
-      this.recipes = data;
+      if (this.currentUser) {
+        this.recipes = data.filter(recipe => recipe.userId === this.currentUser?.id);
+      } else {
+        this.recipes = [];
+      }
     });
   }
 
@@ -94,6 +139,9 @@ export class RecipeComponent implements OnInit {
 
   clearForm() {
     this.form.reset();
+    if (this.currentUser) {
+      this.form.patchValue({ userId: this.currentUser.id });
+    }
     this.selected = null;
   }
 }
