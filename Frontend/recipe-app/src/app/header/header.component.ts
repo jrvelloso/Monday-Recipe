@@ -4,6 +4,7 @@ import { AuthService } from 'src/services/auth.service';
 import { IUser } from 'src/interfaces/iuser';
 import { CategoryService } from 'src/services/category.service';
 import { CategorySelectionService } from 'src/services/category-selection.service';
+import { SearchService } from 'src/services/search.service';
 import { ICategory } from 'src/interfaces/icategory';
 
 @Component({
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private categoryService: CategoryService,
-    private categorySelectionService: CategorySelectionService
+    private categorySelectionService: CategorySelectionService,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,7 @@ export class HeaderComponent implements OnInit {
 
   onSearchChange(query: string) {
     this.searchQuery = query.toLowerCase();
+    this.searchService.setSearchQuery(this.searchQuery);
   }
 
   onSelectChange(event: Event) {

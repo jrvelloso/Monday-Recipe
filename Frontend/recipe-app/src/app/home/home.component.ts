@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RecipeService } from 'src/services/recipe.service';
 import { IRecipe } from 'src/interfaces/irecipe';
 import { CategorySelectionService } from 'src/services/category-selection.service';
+import { SearchService } from 'src/services/search.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,17 +12,19 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  searchQuery: string = '';
   recipes: IRecipe[] = [];
   filteredRecipesList: IRecipe[] = [];
   selectedCategoryId: number | null = null;
   currentCategoryName: string = 'Receitas';
   private categorySubscription!: Subscription;
+  private searchSubscription!: Subscription;
+  private searchQuery: string = '';
 
   constructor(
     private router: Router,
     private recipeService: RecipeService,
-    private categorySelectionService: CategorySelectionService
+    private categorySelectionService: CategorySelectionService,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
@@ -31,11 +34,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.currentCategoryName = category ? category.name : 'Receitas';
       this.applyFilters();
     });
+    this.searchSubscription = this.searchService.searchQuery$.subscribe(query => {
+      this.searchQuery = query;
+      this.applyFilters();
+    });
   }
 
   ngOnDestroy() {
     if (this.categorySubscription) {
       this.categorySubscription.unsubscribe();
+    }
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
     }
   }
 
