@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   recipes: IRecipe[] = [];
   filteredRecipesList: IRecipe[] = [];
   selectedCategoryId: number | null = null;
+  currentCategoryName: string = 'Receitas';
   private categorySubscription!: Subscription;
 
   constructor(
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadRecipes();
     this.categorySubscription = this.categorySelectionService.selectedCategory$.subscribe(category => {
       this.selectedCategoryId = category ? category.id : null;
+      this.currentCategoryName = category ? category.name : 'Receitas';
       this.applyFilters();
     });
   }

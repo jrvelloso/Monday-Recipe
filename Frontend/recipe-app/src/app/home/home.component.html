@@ -1,5 +1,5 @@
 <section class="recipes-section">
-  <h2>Receitas</h2>
+  <h2>{{ currentCategoryName }}</h2>
   <a href="#" class="view-all">Ver tudo ></a>
   <div class="recipes-grid">
     <div class="recipe-card" *ngFor="let recipe of filteredRecipes" tabindex="0" role="button" (click)="onRecipeClick(recipe.id)">
@@ -7,7 +7,7 @@
       <img src="assets/images/default-recipe.png" [alt]="recipe.title" />
       <div class="recipe-info">
         <h3>{{ recipe.title }}</h3>
-        <p><b>Autor: {{ recipe.user?.name }}</b></p>
+        <p>{{ recipe.user?.name }}</p>
       </div>
     </div>
   </div>
