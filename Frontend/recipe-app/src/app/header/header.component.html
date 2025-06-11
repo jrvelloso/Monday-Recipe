@@ -5,10 +5,8 @@
   </div>
   <div class="nav">
     <select (change)="onSelectChange($event)">
-      <option value="home">Receitas</option>
-      <!--<option value="category">Categoria</option>
-      <option value="ingredients">Ingredientes</option>
-      <option value="comment">Comentários</option> -->
+      <option [value]="null">Todas as Categorias</option>
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
     </select>
 
     <input type="text" placeholder="Pesquise por Receitas..." (input)="onSearchChange($any($event.target).value)" />

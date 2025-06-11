@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { IUser } from 'src/interfaces/iuser';
+import { CategoryService } from 'src/services/category.service';
+import { CategorySelectionService } from 'src/services/category-selection.service';
+import { ICategory } from 'src/interfaces/icategory';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +15,31 @@ export class HeaderComponent implements OnInit {
   searchQuery: string = '';
   currentUser: IUser | null = null;
   showDropdown: boolean = false;
+  categories: ICategory[] = [];
+  selectedCategoryId: number | null = null;
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private categoryService: CategoryService,
+    private categorySelectionService: CategorySelectionService
   ) { }
 
   ngOnInit() {
     this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
+    });
+    this.loadCategories();
+  }
+
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe({
+      next: (data: ICategory[]) => {
+        this.categories = data;
+      },
+      error: (error) => {
+        console.error('Error loading categories:', error);
+      }
     });
   }
 
@@ -37,10 +56,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onSelectChange(event: Event) {
-    const route = (event.target as HTMLSelectElement).value;
-
-    console.log('Navigating to:', route);
-    this.router.navigate(['/' + route]);
+    const selectedId = Number((event.target as HTMLSelectElement).value);
+    this.selectedCategoryId = selectedId;
+    const selectedCategory = this.categories.find(cat => cat.id === selectedId) || null;
+    this.categorySelectionService.selectCategory(selectedCategory);
   }
 
   navigateTo(path: string) {
