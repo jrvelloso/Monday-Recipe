@@ -11,7 +11,7 @@
 
     <input type="text" placeholder="Pesquise por Receitas..." (input)="onSearchChange($any($event.target).value)" />
 
-    <button *ngIf="currentUser" class="btn-new-recipe" (click)="navigateTo('/recipe')">Nova Receita</button>
+    <button *ngIf="currentUser" class="login-btn" (click)="navigateTo('/recipe')">Nova Receita</button>
 
     <ng-container *ngIf="currentUser; else showLogin">
       <select class="login-btn user-menu" (change)="onUserMenuChange($event)">

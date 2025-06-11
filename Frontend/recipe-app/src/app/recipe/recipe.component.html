@@ -18,8 +18,8 @@
     </div>
 
     <div class="form-group">
-      <label for="preparationTime">Tempo de Preparação (minutos)</label>
-      <input id="preparationTime" formControlName="preparationTime" type="number" min="1" />
+      <label for="preparationTime">Tempo de Preparação</label>
+      <input id="preparationTime" formControlName="preparationTime" type="text" min="1" />
       <div *ngIf="form.get('preparationTime')?.invalid && form.get('preparationTime')?.touched" class="error">
         Tempo de preparação é obrigatório e deve ser maior que zero.
       </div>

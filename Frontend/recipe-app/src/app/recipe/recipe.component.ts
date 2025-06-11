@@ -77,6 +77,7 @@ export class RecipeComponent implements OnInit {
 
   fetch(): void {
     this.service.getAll().subscribe((data: IRecipe[]) => {
+      console.log(data);
       if (this.currentUser) {
         this.recipes = data.filter(recipe => recipe.userId === this.currentUser?.id);
       } else {
@@ -90,7 +91,7 @@ export class RecipeComponent implements OnInit {
     this.form.patchValue({
       title: item.title,
       description: item.description,
-      preparationTime: item.preparationTime,
+      preparationTime: item.preparationTime !== undefined && item.preparationTime !== null ? item.preparationTime.toString() : '',
       categoryId: item.categoryId,
       difficultyId: item.difficultyId,
       userId: item.userId,
@@ -98,8 +99,8 @@ export class RecipeComponent implements OnInit {
     });
   }
 
-  create(item: IRecipe): void {
-    this.service.create(item).subscribe(() => {
+  create(item: Omit<IRecipe, 'id' | 'category' | 'difficulty' | 'user' | 'status'>): void {
+    this.service.create(item as IRecipe).subscribe(() => {
       this.fetch();
       this.clearForm();
     });
@@ -107,6 +108,7 @@ export class RecipeComponent implements OnInit {
 
   update(): void {
     if (this.selected) {
+      console.log(this.selected.id)
       this.service.update(this.selected.id, this.selected).subscribe(() => {
         this.fetch();
         this.clearForm();
@@ -123,16 +125,29 @@ export class RecipeComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       if (this.selected) {
-        this.selected.title = this.form.value.title;
-        this.selected.description = this.form.value.description;
-        this.selected.preparationTime = this.form.value.preparationTime;
-        this.selected.categoryId = this.form.value.categoryId;
-        this.selected.difficultyId = this.form.value.difficultyId;
-        this.selected.userId = this.form.value.userId;
-        this.selected.isActive = this.form.value.isActive;
+        this.selected.title = this.form.get('title')?.value;
+        this.selected.description = this.form.get('description')?.value;
+        this.selected.preparationTime = this.form.get('preparationTime')?.value;
+        this.selected.categoryId = this.form.get('categoryId')?.value;
+        this.selected.difficultyId = this.form.get('difficultyId')?.value;
+        this.selected.userId = this.currentUser?.id || 0;
+        this.selected.isActive = this.form.get('isActive')?.value;
         this.update();
       } else {
-        this.create(this.form.value);
+        const newRecipe: Partial<IRecipe> = {
+          title: this.form.get('title')?.value,
+          description: this.form.get('description')?.value,
+          preparationTime: this.form.get('preparationTime')?.value,
+          categoryId: this.form.get('categoryId')?.value,
+          difficultyId: this.form.get('difficultyId')?.value,
+          userId: this.currentUser?.id || 0,
+          isActive: this.form.get('isActive')?.value,
+          status: 'active',
+          category: undefined,
+          difficulty: undefined,
+          user: undefined
+        };
+        this.create(newRecipe as IRecipe);
       }
     }
   }
