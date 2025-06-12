@@ -1,4 +1,4 @@
-﻿namespace RecipeMaster
+﻿namespace MasterChiefRecipe
 {
     internal class Program
     {

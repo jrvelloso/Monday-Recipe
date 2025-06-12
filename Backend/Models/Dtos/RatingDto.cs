@@ -1,8 +1,7 @@
-﻿using Models.Dtos;
-using Models.Entities;
+﻿using Models.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models
+namespace Models.Dtos
 {
     [NotMapped]
     public class RatingDto : BaseModelDto

@@ -24,7 +24,7 @@ export class RecipeService {
   }
 
   update(id: number, recipe: IRecipe): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, recipe);
+    return this.http.put<void>(`${this.apiUrl}?id=${id}`, recipe);
   }
 
   delete(id: number): Observable<void> {

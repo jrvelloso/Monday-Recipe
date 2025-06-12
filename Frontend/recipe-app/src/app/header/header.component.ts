@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { IUser } from 'src/interfaces/iuser';
@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   showDropdown: boolean = false;
   categories: ICategory[] = [];
   selectedCategoryId: number | null = null;
+  @ViewChild('categorySelect') categorySelectRef!: ElementRef<HTMLSelectElement>;
 
   constructor(
     private router: Router,
@@ -65,10 +66,24 @@ export class HeaderComponent implements OnInit {
     this.categorySelectionService.selectCategory(selectedCategory);
   }
 
-  navigateTo(path: string) {
+  navigateTo(path: string, resetCategory: boolean = false) {
+    if (resetCategory) {
+      this.resetCategory();
+    }
     this.showDropdown = false;
     this.router.navigate([path]);
   }
+
+  resetCategory() {
+    const selectElement = this.categorySelectRef?.nativeElement;
+    if (selectElement) {
+      selectElement.value = '-1';
+      const event = new Event('change', { bubbles: true });
+      selectElement.dispatchEvent(event);
+    }
+  }
+
+
 
   logout() {
     this.authService.logout();

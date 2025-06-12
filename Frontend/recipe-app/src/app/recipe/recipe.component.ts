@@ -101,6 +101,7 @@ export class RecipeComponent implements OnInit {
 
   create(item: Omit<IRecipe, 'id' | 'category' | 'difficulty' | 'user' | 'status'>): void {
     this.service.create(item as IRecipe).subscribe(() => {
+      console.log(item);
       this.fetch();
       this.clearForm();
     });
@@ -141,12 +142,8 @@ export class RecipeComponent implements OnInit {
           categoryId: this.form.get('categoryId')?.value,
           difficultyId: this.form.get('difficultyId')?.value,
           userId: this.currentUser?.id || 0,
-          isActive: this.form.get('isActive')?.value,
-          status: 'active',
-          category: undefined,
-          difficulty: undefined,
-          user: undefined
         };
+        console.log(newRecipe);
         this.create(newRecipe as IRecipe);
       }
     }

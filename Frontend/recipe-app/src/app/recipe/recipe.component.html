@@ -47,18 +47,17 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="userId">Usuário</label>
       <input id="userId" [value]="currentUser?.name" type="text" readonly />
-    </div>
+    </div> -->
 
-    <div class="form-group checkbox-group">
+    <!-- <div class="form-group checkbox-group">
       <label>
         <input type="checkbox" formControlName="isActive" />
         Ativo
       </label>
-    </div>
-
+    </div> -->
     <button type="submit" [disabled]="form.invalid" class="btn-submit">
       {{ selected ? 'Atualizar' : 'Criar' }}
     </button>

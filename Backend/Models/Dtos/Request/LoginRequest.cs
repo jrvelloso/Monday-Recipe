@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.Dtos
+namespace Models.Dtos.Request
 {
     [NotMapped]
     public class LoginRequest

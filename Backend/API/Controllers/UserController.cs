@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Models;
 using Models.Dtos;
+using Models.Dtos.Request;
 using Service.Interfaces;
 
 namespace API.Controllers

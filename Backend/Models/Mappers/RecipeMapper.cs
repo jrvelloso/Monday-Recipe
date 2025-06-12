@@ -1,4 +1,6 @@
-﻿using Models.Entities;
+﻿using Models.Dtos;
+using Models.Dtos.Request;
+using Models.Entities;
 
 namespace Models.Mappers
 {
@@ -23,6 +25,22 @@ namespace Models.Mappers
                 UserId = entity.UserId,
                 IsAtive = entity.IsAtive,
                 Status = entity.Status,
+            };
+        }
+
+        public static Recipe FromDtoToCreate(RecipeRequest request)
+        {
+            if (request == null)
+                return null;
+
+            return new Recipe
+            {
+                Description = request.Description,
+                CategoryId = request.CategoryId,
+                DifficultyId = request.DifficultyId,
+                PreparationTime = request.PreparationTime,
+                Title = request.Title,
+                UserId = request.UserId,
             };
         }
         public static IEnumerable<RecipeDto> ToDtos(IEnumerable<Recipe> entities)
@@ -68,6 +86,20 @@ namespace Models.Mappers
             entity.UserId = entityDto.UserId;
             entity.IsAtive = entityDto.IsAtive;
             entity.Status = entityDto.Status;
+            return entity;
+        }
+
+        public static Recipe FromDtoToUpdate(RecipeUpdate entityDto, Recipe entity)
+        {
+            if (entityDto == null)
+                return null;
+
+            entity.Description = entityDto.Description;
+            entity.CategoryId = entityDto.CategoryId;
+            entity.DifficultyId = entityDto.DifficultyId;
+            entity.PreparationTime = entityDto.PreparationTime;
+            entity.Title = entityDto.Title;
+            entity.UserId = entityDto.UserId;
             return entity;
         }
     }

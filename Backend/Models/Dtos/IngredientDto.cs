@@ -1,7 +1,6 @@
-﻿using Models.Dtos;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models
+namespace Models.Dtos
 {
     [NotMapped]
     public class IngredientDto : BaseModelDto

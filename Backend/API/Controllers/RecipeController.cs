@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using Models.Dtos;
+using Models.Dtos.Request;
 using Service.Interfaces;
 
 namespace API.Controllers
@@ -52,7 +53,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<RecipeDto>> Create(RecipeDto item, CancellationToken cancellationToken)
+        public async Task<ActionResult<RecipeDto>> Create(RecipeRequest item, CancellationToken cancellationToken)
         {
             try
             {
@@ -72,7 +73,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(int id, RecipeDto item)
+        public async Task<IActionResult> Update(int id, RecipeUpdate item)
         {
             try
             {
@@ -122,3 +123,4 @@ namespace API.Controllers
         }
     }
 }
+

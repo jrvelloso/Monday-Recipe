@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using Models.Dtos;
 
 namespace Service.Interfaces
 {

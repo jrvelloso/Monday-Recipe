@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using Models;
+using Models.Dtos;
+using Models.Dtos.Request;
 using Models.Entities;
 using Models.Mappers;
 using Repository.Interfaces;
@@ -16,11 +17,12 @@ namespace Service.Implementation
             _repository = recipeIngredientRepository ?? throw new ArgumentNullException(nameof(recipeIngredientRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public async Task<RecipeDto> AddAsync(RecipeDto entityDto)
+        public async Task<RecipeDto> AddAsync(RecipeRequest request)
         {
             try
             {
-                var entity = RecipeMapper.ToEntityAdd(entityDto);
+                var entity = RecipeMapper.FromDtoToCreate(request);
+                entity.IsAtive = true;
                 var entitySaved = await _repository.AddAsync(entity);
                 await _repository.SaveAsync();
 
@@ -33,7 +35,7 @@ namespace Service.Implementation
                 throw;
             }
         }
-        public async Task<RecipeDto> Update(RecipeDto entityDto)
+        public async Task<RecipeDto> Update(RecipeUpdate entityDto)
         {
             try
             {
@@ -44,7 +46,7 @@ namespace Service.Implementation
                     throw new InvalidOperationException("Receita não encontrado.");
                 }
                 // Atualizar as informações
-                entity = RecipeMapper.ToEntityUpdate(entityDto, entity);
+                entity = RecipeMapper.FromDtoToUpdate(entityDto, entity);
 
                 // Salvar as alterações no repositório
                 var entityUpdated = await _repository.Update(entity);
